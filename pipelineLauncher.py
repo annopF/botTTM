@@ -1,24 +1,28 @@
 import book
 import time
 import datetime
+import json
 
-################################ CONFIG DATA HERE ################################
 
-queue = False  #concert has queue before booking
-oneDay = True #concert has only one round
-day = "1" #day you want to book
-zone_list = ["A1","A2","B2"] #zone you want to book
-startTime = {"YEAR": 2023, "MONTH": 8, "DAY": 17, "HOUR": 22, "MINUTE":31}
-queueTime = {"YEAR": 2023, "MONTH": 6, "DAY": 17, "HOUR": 21, "MINUTE":58}
-ticketPrice = 5500 #price you want to book
-fee = 20 #ticket fee
-limit = 4 #no. of tickets to purchase   
-mode =  "any" #required only when limit > 1, close = continuous seats, any = any seats
-name_list = ["john1","john2"]
+json_file_path = "F:/Work Folder/ticSeleBot/seatConfig.json"  
+with open(json_file_path, "r") as file:
+    data = json.load(file)
+    
+################################ CONFIG DATA FROM JSON FILE ################################
+queue = data["queue"]               #[BOOL] concert has queue before booking
+oneDay = data["oneDay"]             #[BOOL] concert has only one round
+day = data["day"]                   #[INT] if concert has multiple days, pick one
+zone_list = data["zone_list"]       #[LIST] zone you want to book
+startTime = data["startTime"]       #[DICT] เวลาเปิดขายบัตร
+queueTime = data["queueTime"]       #[DICT] เวลารับบัตรคิว
+ticketPrice = data["ticketPrice"]   #[INT] price you want to book
+fee = data["fee"]                   #[INT] ticket fee
+limit = data["limit"]               #[INT] no. of tickets to purchase   
+mode =  data["mode"]                #[STR] close = continuous seats, any = any seats (required only when limit > 1)
+name_list = data["name_list"]       #[LIST] if concert requires a name to be written on the tickets 
+url = data["url"]                   #[STR] url to concert main page
+################################ CONFIG DATA FROM JSON FILE ################################
 
-tst = "https://www.thaiticketmajor.com/concert/2023-kim-bum-asia-fan-meeting-in-bangkok.html"
-url = tst
-################################ CONFIG END HERE ################################
 temp = [val for key, val in startTime.items()]
 temp.extend([0,0,0,0])
 target_time = time.mktime(tuple(temp)) #format: (Year, Month, Day, Hour, Minute)
@@ -27,7 +31,6 @@ tempQ = [val for key, val in queueTime.items()]
 tempQ.extend([0,0,0,0])
 queue_time = time.mktime(tuple(tempQ))
 price = str(ticketPrice+fee)
-failCounter = 0 #count how many times program encouter "seat already taken popup", --> must refetch seat map again
 success = False
 #*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*#
 def queueAndWaitHandler():
@@ -38,21 +41,27 @@ def queueAndWaitHandler():
         .format(url,queue,oneDay,day,zone_list,startTime,ticketPrice,limit,mode))
     
     book.loadAndLogin(url)
-    print("----------> The program is still running (wait until target time) <----------\n\n")
+    print("----------> The program is still running (รอเวลารับบัตรคิว {}) <----------\n\n".format(queueTime))
 
-    time.sleep(queue_time)
+    time.sleep(queueWait)
     
     book.click_btn_red_DIRECT()
+    print("----------> รับคิวเรียบร้อย รอเวลาเปิดขายบัตร at {}".format(startTime))
+    time.sleep(startWait)
     print("----------> YOU ARE IN QUEUE!, wait until your turn")
     book.waitInQueue()
+    print("----------> IT'S YOUR TURN, Booking starts")
+
+
     book.acceptTerms()
     book.clickDropdown(day)
 
 if queue:
     queueAndWaitHandler()
 else:
-    #current_time = time.time()
-    #startWait = target_time - 10 - current_time
+    current_time = time.time()
+    startWait = target_time - 10 - current_time
+    time.sleep(startWait)
     print("----------> The program is still running (wait until target time) <----------\n\n")
     book.loadAndLogin(url)
     #time.sleep(startWait)
@@ -64,7 +73,7 @@ else:
 
     book.acceptTerms()
 
-for zone in zone_list:
+""" for zone in zone_list:
     book.findZone(zone)
     seats = book.findAllSeatUnchecked(price)
     print("len seat:--=", len(seats))
@@ -92,5 +101,49 @@ for zone in zone_list:
 
             else:
                 book.noSeatHandler()
-                print("NO consec block found, moving to next zone")
+                print("NO consec block found, moving to next zone") """
+
+success = False
+confirmBookStatus = False
+Mstart = time.time()
+click = False
+for zone in zone_list:
+    book.findZone(zone)
+
+    while not success:
+        seats = book.findAllSeatUnchecked(price)  
+        print("Zone:", price,zone)
+
+        if len(seats) < limit:
+            book.noSeatHandler()
+            print("NO seat found, moving to next zone")
+            break  # Move to the next zone
+        
+        if limit == 1 or (limit > 1 and mode == "any"):
+            if book.clickSeat(limit, seats):
+                print("clickis ",click)
+                success = True
+                break
+            
+            
+        elif limit > 1 and mode == "close":
+            consecBlock = book.findConsecseats(limit, seats)
+            if len(consecBlock) >= limit:
+                if book.clickSeat(limit, consecBlock):
+                    print("clickis ",click)
+                    success = True
+                    break
+            else:
+                book.noSeatHandler()
+                break
+
+    if success and book.completeBooking(name_list):
+        break
+
+Mend = time.time()
+
+if success:
+    print("------SUCCESS: MAIN LOOP TERMINATED------, TIME TAKEN: ", Mend-Mstart)
+else:
+    print("Booking was unsuccessful.")
 

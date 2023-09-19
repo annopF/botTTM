@@ -1,0 +1,14 @@
+{
+    "queue": false,
+    "oneDay": true,
+    "day": "1",
+    "zone_list": ["M", "N", "O", "P", "Q", "R"],
+    "startTime": {"YEAR": 2023, "MONTH": 9, "DAY": 19, "HOUR": 23, "MINUTE": 0},
+    "queueTime": {"YEAR": 2023, "MONTH": 9, "DAY": 19, "HOUR": 23, "MINUTE": 0},
+    "ticketPrice": 4500,
+    "fee": 0,
+    "limit": 1,
+    "mode": "close",
+    "name_list": ["john1", "john2", "john3", "john4"],
+    "url": "https://www.thaiticketmajor.com/concert/one-ok-rock-luxury-disease-asia-tour-2023-in-bangkok.html"
+}

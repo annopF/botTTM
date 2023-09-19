@@ -248,6 +248,7 @@ def findConsecseats(limit,seats):
     return temp
 
 def noSeatHandler():
+    print("*****NO SEAT HANDLER IS CALLED")
     driver.back()
     driver.refresh()
 
@@ -265,7 +266,7 @@ def clickSeat(limit,seats):
         except EX.ElementClickInterceptedException:
             driver.find_element(By.CSS_SELECTOR,"body > div.fancybox-overlay.fancybox-overlay-fixed > div > div > a").click()
             driver.refresh()
-            print("one or more seats unavailable, calling noSeatHandler()")
+            print("encountered seat already taken popup, --refreshing in place...")
 
             return(False)
     end = time.time()
@@ -278,33 +279,30 @@ def fillTicName(nameList):
     driver.find_element(By.CSS_SELECTOR,"#btn_regnow").click()
 
 
-def completeBooking(confirm, nameList):
+def completeBooking(nameList):
+    currentURL = driver.current_url
     try:
         driver.find_element(By.CSS_SELECTOR,"#booknow").click()
     except EX.UnexpectedAlertPresentException:
 
         driver.switch_to().alert().accept()
+        print("fucking popup encountered")
         driver.refresh()
         return False
     except EX.ElementClickInterceptedException:
         driver.find_element(By.CSS_SELECTOR,"body > div.fancybox-overlay.fancybox-overlay-fixed > div > div > a").click()
+        print("fucking popup encountered")
         driver.refresh()
         return False
 
-    if confirm:
+    if "enroll_fixed" in currentURL:
         fillTicName(nameList)
     wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR,"#btn_pickup"))).click()
     wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR,"#btn_mobile"))).click()
     wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR,"#btn_truemoney"))).click()
     wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR,"#truemoney_contact"))).send_keys("0842564963")
     time.sleep(0.5)
+    return True
 
     
-
-def tst():
-    driver.find_element(By.CSS_SELECTOR,"#booknow").click()
-
-
-
-
 
