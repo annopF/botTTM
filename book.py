@@ -5,8 +5,10 @@ import selenium.webdriver.support.expected_conditions as EC
 import selenium.common.exceptions as EX
 from  selenium.webdriver.support.wait import WebDriverWait
 import time
+import logging
+from logging_config import configure_logging
 
-
+configure_logging()
 
 options = Options()
 options.add_experimental_option("detach", True)
@@ -45,9 +47,25 @@ def loadAndLogin(URL):
     #login end
     end = time.time()
     print("---->> <<----elapsed time --load+login ", end - start)
+    logging.info(f"elapsed time --load+login {end-start}")
 
-def waitInQueue():
+
+#DESC: monitor for file change by comparing hash of files
+#ARGS: accept path to file
+#RETURN: hash value of file
+def monitorConfigChange(path):
+    with open(path,"rb") as file:
+        content = file.read()
+        return(hash(content))
+
+#DESC: wait in queue until URL change to term and condition page
+#it also monitor for file change after each wait
+#ARGS: path to a file to be monitored
+#RETURN: True if file changed, False otherwise
+def waitInQueue(path):
     time.sleep(2)
+    change = False
+    currentHash = monitorConfigChange(path)
     currentURL = driver.current_url
     print("in queue")
     print("curent url = {}".format(currentURL))
@@ -56,13 +74,23 @@ def waitInQueue():
         print("new url = {}".format(newURL))
         if currentURL != newURL and "verify" in newURL:
             print("queue ended, booking process starts now")
-            return()
+            return(change)
+        elif "ขณะนี้ถึงคิวของคุณ" in driver.page_source:
+            print("[CRITICAL] waiting... poll rate = 0.5sec")
+            time.sleep(0.5)
         else:
-            print("waiting... poll rate = 5sec")
+            print("[NORMAL] waiting... poll rate = 5sec")
 
             time.sleep(5)
+            newHash = monitorConfigChange(path)
+            if currentHash != newHash:
+                change = True
 
-    
+
+#DESC: click รับบัตรคิว OR ซื้อบัตร depending on the concert, but both use the same locator
+# it keep trying until successfully clicked
+#ARGS: None
+#RETURN: None
 def click_btn_red_DIRECT():
     print("one day <->")
 
@@ -87,10 +115,15 @@ def click_btn_red_DIRECT():
         except (EX.StaleElementReferenceException, EX.ElementClickInterceptedException, EX.TimeoutException, EX.ElementNotInteractableException) as e:
             # Handle the ElementClickInterceptedException
             current_retry += 1
-            print(f"Attempt #{current_retry} - {e}") 
+            print(f"Attempt #{current_retry} - {e}")
+            logging.info(f"Attempt #{current_retry}: {e}")
     end = time.time()
     print("---->> <<----elapsed time --oneDay ", end-start, current_retry)
-    
+    logging.info(f"elapse time --oneDay() {end-start}")
+
+#DESC: click ซื้อบัตร but when the concert has multiple rounds. This function is used when the concert has no queue
+#ARGS: accept path to file
+#RETURN: hash value of file
 def click_btn_red_INDIRECT():
     print("click btn-red <->")
 
@@ -110,9 +143,13 @@ def click_btn_red_INDIRECT():
         except (EX.StaleElementReferenceException, EX.ElementClickInterceptedException, EX.TimeoutException, EX.ElementNotInteractableException) as e:
             # Handle the ElementClickInterceptedException
             current_retry += 1
-            print(f"Attempt #{current_retry} - {e}") 
+            print(f"Attempt #{current_retry} - {e}")
+            logging.info(f"Attempt #{current_retry}: {e}")
+
     end = time.time()
     print("---->> <<----elapsed time --click btn red ", end-start, current_retry)
+    logging.info(f"elapse time --click_btn_red() {end-start}")
+
 
 def moreDay(day):
     print("more day <->")
@@ -121,7 +158,6 @@ def moreDay(day):
 
     attrix = f"#section-event-round > div > div.event-detail-item > div.box-event-list > div.body > div:nth-child({day}) > div.col-btn > span"
     click_btn_red_INDIRECT()
-    max_retries = 3
     current_retry = 0
     currentURL = driver.current_url
     increment = 1
@@ -142,8 +178,11 @@ def moreDay(day):
             # Handle the ElementClickInterceptedException
             current_retry += 1
             print(f"Attempt #{current_retry} - {e}") 
+            logging.info(f"Attemp#{current_retry}: {e}")
+
     end = time.time()
     print("---->> <<----elapsed time --moreDay ", end - start, current_retry)
+    logging.info(f"elapse time --moreDay() {end-start}")
 
 
 #click accept term and condition
@@ -172,9 +211,11 @@ def acceptTerms():
             # Handle the ElementClickInterceptedException
             current_retry += 1
             print(f"Attempt #{current_retry} - {e}")
-    
+            logging.info(f"Attempt #{current_retry}: {e}")
+
     end = time.time()
     print("---->> <<----elapsed time --accept terms ", end - start)
+    logging.info(f"elapse time --acceptTerms() {end-start}")
 
 
 def clickDropdown(day):
@@ -186,6 +227,7 @@ def clickDropdown(day):
 
     end = time.time()
     print("---->> <<----elapsed time --click dropdown ", end - start)
+    logging.info(f"elapse time --clickDropdown() {end-start}")
 
 def findZone(zone):
     start = time.time()
@@ -210,9 +252,12 @@ def findZone(zone):
         except (EX.StaleElementReferenceException, EX.ElementClickInterceptedException, EX.TimeoutException, EX.ElementNotInteractableException) as e:
             # Handle the ElementClickInterceptedException
             current_retry += 1
-            print(f"Attempt #{current_retry} - {e}") 
+            print(f"Attempt #{current_retry} - {e}")
+            logging.info(f"Attempt #{current_retry}: {e}")
+
     end = time.time()
-    print("---->> <<----elapsed time --find zone ", end - start)
+    print("---->> <<----elapsed time --findZone() ", end - start)
+    logging.info(f"elapse time --findZone() {end-start}")
 
 def findAllSeatUnchecked(price):
     start = time.time()
@@ -220,6 +265,8 @@ def findAllSeatUnchecked(price):
     end = time.time()
     
     print("---->> <<----elapsed time --find all .seatuncheck", end - start)
+    logging.info(f"elapse time --findAllSeatUnchecked() {end-start} len={len(seats)}")
+    
     return seats
 
 
@@ -242,13 +289,11 @@ def findConsecseats(limit,seats):
 
     end = time.time()
     print("---->> <<----elapsed time --find consecutive seats", end - start)
-    print("_------- OUT")
-    print(temp)
-
+    logging.info(f"elapse time --findConsecseats() {end-start}")
     return temp
 
 def noSeatHandler():
-    print("*****NO SEAT HANDLER IS CALLED")
+    logging.info("[NO SEAT] No seat or consec seat found, Moving to next zone")
     driver.back()
     driver.refresh()
 
@@ -261,16 +306,20 @@ def clickSeat(limit,seats):
         time.sleep(0.2)
         try:
             seats[i].click()
-
-            print("-->",seats[i].get_attribute("data-seat"))
+            p = seats[i].get_attribute("data-seat")
+            print("-->",p)
+            time.sleep(0.5)
+            logging.info(f"-->{p}")
         except EX.ElementClickInterceptedException:
             driver.find_element(By.CSS_SELECTOR,"body > div.fancybox-overlay.fancybox-overlay-fixed > div > div > a").click()
             driver.refresh()
-            print("encountered seat already taken popup, --refreshing in place...")
-
+           
+            print(f"encountered seat already taken popup, --refreshing in place... problematic seat:{p}")
+            logging.info("[CLICK FAILED] encountered seat already taken popup, --refreshing in place...")
             return(False)
     end = time.time()
     print("---->> <<----elapsed time --click seat", end - start)
+    logging.info(f"elapse time --clickSeat() {end-start}")
     return(True)
 
 def fillTicName(nameList):
@@ -281,19 +330,21 @@ def fillTicName(nameList):
 
 def completeBooking(nameList):
     currentURL = driver.current_url
+    
+    print("CLICK BOOK NOW")
+    driver.find_element(By.CSS_SELECTOR,"#booknow").click()
     try:
+        wait.until(EC.alert_is_present())
         driver.find_element(By.CSS_SELECTOR,"#booknow").click()
-    except EX.UnexpectedAlertPresentException:
 
-        driver.switch_to().alert().accept()
-        print("fucking popup encountered")
+    except EX.UnexpectedAlertPresentException:
+        print("fucking popup encountered F")
+        driver.back()
         driver.refresh()
+        logging.info("! can't complete booking due to intercepted browser alert")
+
         return False
-    except EX.ElementClickInterceptedException:
-        driver.find_element(By.CSS_SELECTOR,"body > div.fancybox-overlay.fancybox-overlay-fixed > div > div > a").click()
-        print("fucking popup encountered")
-        driver.refresh()
-        return False
+    
 
     if "enroll_fixed" in currentURL:
         fillTicName(nameList)

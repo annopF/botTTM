@@ -1,149 +1,106 @@
 import book
 import time
-import datetime
-import json
+import configData
+import logging
+from logging_config import configure_logging
 
+configure_logging()
 
 json_file_path = "F:/Work Folder/ticSeleBot/seatConfig.json"  
-with open(json_file_path, "r") as file:
-    data = json.load(file)
-    
-################################ CONFIG DATA FROM JSON FILE ################################
-queue = data["queue"]               #[BOOL] concert has queue before booking
-oneDay = data["oneDay"]             #[BOOL] concert has only one round
-day = data["day"]                   #[INT] if concert has multiple days, pick one
-zone_list = data["zone_list"]       #[LIST] zone you want to book
-startTime = data["startTime"]       #[DICT] เวลาเปิดขายบัตร
-queueTime = data["queueTime"]       #[DICT] เวลารับบัตรคิว
-ticketPrice = data["ticketPrice"]   #[INT] price you want to book
-fee = data["fee"]                   #[INT] ticket fee
-limit = data["limit"]               #[INT] no. of tickets to purchase   
-mode =  data["mode"]                #[STR] close = continuous seats, any = any seats (required only when limit > 1)
-name_list = data["name_list"]       #[LIST] if concert requires a name to be written on the tickets 
-url = data["url"]                   #[STR] url to concert main page
-################################ CONFIG DATA FROM JSON FILE ################################
-
-temp = [val for key, val in startTime.items()]
-temp.extend([0,0,0,0])
-target_time = time.mktime(tuple(temp)) #format: (Year, Month, Day, Hour, Minute)
-
-tempQ = [val for key, val in queueTime.items()]
-tempQ.extend([0,0,0,0])
-queue_time = time.mktime(tuple(tempQ))
-price = str(ticketPrice+fee)
 success = False
-#*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*#
-def queueAndWaitHandler():
-    current_time = time.time()
-    queueWait = queue_time -5 - current_time
-    startWait = target_time - 10 - current_time
-    print("\n\n-------<<< CONFIRM BOOKING DETAIL >>>-------\n\nConcert: {}\nHas Queue: {}\nOnly One Day: {}\nChosen Day: {}\nZone: {}\nBooking Start: {}\nTicket Price: {}\nNo.of Tickets: {}\nMultiple Ticket Mode: {}\n--------------------------------------------"
-        .format(url,queue,oneDay,day,zone_list,startTime,ticketPrice,limit,mode))
-    
-    book.loadAndLogin(url)
-    print("----------> The program is still running (รอเวลารับบัตรคิว {}) <----------\n\n".format(queueTime))
 
-    time.sleep(queueWait)
+config = configData.bookingDetail(json_file_path)
+config.initialize()
+config.showConfig()
+config.showTargetTime()
+#*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*#
+fuckedUpSeat = []
+def queueAndWaitHandler():
+    """ current_time = time.time()
+    queueWait = config.queue_time -5 - current_time
+    startWait = config.start_time - 10 - current_time """
+   
+    book.loadAndLogin(config.url)
+    print("----------> The program is still running (รอเวลารับบัตรคิว {}) <----------\n\n".format(config.queueTime))
+    config.countdown(config.queue_time)
     
     book.click_btn_red_DIRECT()
-    print("----------> รับคิวเรียบร้อย รอเวลาเปิดขายบัตร at {}".format(startTime))
-    time.sleep(startWait)
+    print("----------> รับคิวเรียบร้อย รอเวลาเปิดขายบัตร at {}".format(config.startTime))
+    config.countdown(config.start_time)
+
     print("----------> YOU ARE IN QUEUE!, wait until your turn")
-    book.waitInQueue()
+    logging.info("----------> YOU ARE IN QUEUE!, wait until your turn")
+    if book.waitInQueue(json_file_path): #if waitInQueue() returns True, it means the config file has changed, will call config.update() to read the config file again
+        config.update()
     print("----------> IT'S YOUR TURN, Booking starts")
 
 
     book.acceptTerms()
-    book.clickDropdown(day)
+    book.clickDropdown(config.day)
 
-if queue:
-    queueAndWaitHandler()
-else:
-    current_time = time.time()
-    startWait = target_time - 10 - current_time
-    time.sleep(startWait)
+def normalBookingHandler():
+ 
+    book.loadAndLogin(config.url) #load URL and login with the given username and password 
     print("----------> The program is still running (wait until target time) <----------\n\n")
-    book.loadAndLogin(url)
-    #time.sleep(startWait)
+    config.countdown(config.start_time)
 
-    if oneDay:
+    if config.oneDay: #if concert has one round, click button directly by calling click_btn_red_DIRECT()
         book.click_btn_red_DIRECT()
     else:
-        book.moreDay(day)
+        book.moreDay(config.day) #if concert has multiple rounds, click call moreDay() to handle it properly
 
-    book.acceptTerms()
+    book.acceptTerms() #click accept terms and conditions by calling acceptTerms()
 
-""" for zone in zone_list:
-    book.findZone(zone)
-    seats = book.findAllSeatUnchecked(price)
-    print("len seat:--=", len(seats))
-    if len(seats) == 0:
-        book.noSeatHandler()
-        print("NO seat found, moving to next zone")
-        break
+if config.queue:
+    queueAndWaitHandler()
+else:
+    normalBookingHandler()
+    
 
-    else:  
-        if limit == 1:
-            click = book.clickSeat(limit, seats)
-            print(click)
-            if click:
-                success = True
-                break
-        elif limit > 1 and mode == "any":
-            click = book.clickSeat(limit, seats)
-            print(click)
-            break
-        elif limit > 1 and mode == "close":
-            consecBlock = book.findConsecseats(limit,seats)
-            if len(consecBlock) >= limit:
-                book.clickSeat(limit,consecBlock)
-                break
+success = False #success flag change to TRUE if the seats are clicked successfully, default=False
 
-            else:
-                book.noSeatHandler()
-                print("NO consec block found, moving to next zone") """
-
-success = False
-confirmBookStatus = False
 Mstart = time.time()
-click = False
-for zone in zone_list:
+for zone in config.zone_list: #loop through zones in zone list
     book.findZone(zone)
+    while not success: #this while loop keep looping over a zone in case the click fucntion got intercepted by "this seat has been taken" popup
+        seats = book.findAllSeatUnchecked(config.price)  
+       
+        print("Zone:", config.price,zone)
+        logging.info(f"----> current zone {zone, config.price}")
 
-    while not success:
-        seats = book.findAllSeatUnchecked(price)  
-        print("Zone:", price,zone)
-
-        if len(seats) < limit:
-            book.noSeatHandler()
+        if len(seats) < config.limit:
+            book.noSeatHandler() #if no. of seat available in this one less than the desired number, Move to the next zone
             print("NO seat found, moving to next zone")
-            break  # Move to the next zone
+            break  #move to next zone by exiting this zone-level while loop and go to seatmap-level for loop
         
-        if limit == 1 or (limit > 1 and mode == "any"):
-            if book.clickSeat(limit, seats):
-                print("clickis ",click)
+        if config.limit == 1 or (config.limit > 1 and config.mode == "any"):
+            if book.clickSeat(config.limit, seats) and book.completeBooking(config.name_list):
                 success = True
                 break
             
             
-        elif limit > 1 and mode == "close":
-            consecBlock = book.findConsecseats(limit, seats)
-            if len(consecBlock) >= limit:
-                if book.clickSeat(limit, consecBlock):
-                    print("clickis ",click)
+        elif config.limit > 1 and config.mode == "close":
+            consecBlock = book.findConsecseats(config.limit, seats) #allocate continuous block of empty seats
+            if len(consecBlock) >= config.limit:
+                if book.clickSeat(config.limit, consecBlock) and book.completeBooking(config.name_list): 
                     success = True
                     break
             else:
                 book.noSeatHandler()
                 break
 
-    if success and book.completeBooking(name_list):
+    if success:
         break
+    else:
+        print("FAILED---->")
+        success = False
 
 Mend = time.time()
 
 if success:
     print("------SUCCESS: MAIN LOOP TERMINATED------, TIME TAKEN: ", Mend-Mstart)
+    logging.info(f"------SUCCESS: MAIN LOOP TERMINATED------, TIME TAKEN: {Mend-Mstart}")
 else:
-    print("Booking was unsuccessful.")
+    print("****************** BOOKING WAS UNSUCCESSFUL ******************.")
+    logging.info("****************** BOOKING WAS UNSUCCESSFUL ******************.")
 
