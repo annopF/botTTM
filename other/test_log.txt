@@ -1,0 +1,107 @@
+#popup_alert > div > div:nth-child(3) > div > button --> the seat is not avalable (close buton)
+
+
+
+####### log of TWICE Ready to be concert 
+
+waiting... poll rate = 5sec
+new url = https://thaiticketmajor.queue-it.net/?c=thaiticketmajor&e=alt2wtkbkwts&ver=p2
+waiting... poll rate = 5sec
+new url = https://thaiticketmajor.queue-it.net/?c=thaiticketmajor&e=alt2wtkbkwts&ver=p2
+waiting... poll rate = 5sec
+new url = https://thaiticketmajor.queue-it.net/?c=thaiticketmajor&e=alt2wtkbkwts&ver=p2
+waiting... poll rate = 5sec
+new url = https://thaiticketmajor.queue-it.net/?c=thaiticketmajor&e=alt2wtkbkwts&ver=p2
+waiting... poll rate = 5sec
+[11068:12336:0617/104155.158:ERROR:device_event_log_impl.cc(222)] [10:41:55.157] USB: usb_service_win.cc:104 SetupDiGetDeviceProperty({{A45C254E-DF1C-4EFD-8020-67D146A850E0}, 6}) failed: Element not found. (0x490)
+new url = https://thaiticketmajor.queue-it.net/?c=thaiticketmajor&e=alt2wtkbkwts&ver=p2
+waiting... poll rate = 5sec
+new url = https://thaiticketmajor.queue-it.net/?c=thaiticketmajor&e=alt2wtkbkwts&ver=p2
+waiting... poll rate = 5sec
+new url = https://thaiticketmajor.queue-it.net/?c=thaiticketmajor&e=alt2wtkbkwts&ver=p2
+waiting... poll rate = 5sec
+new url = https://thaiticketmajor.queue-it.net/?c=thaiticketmajor&e=alt2wtkbkwts&ver=p2
+waiting... poll rate = 5sec
+new url = https://thaiticketmajor.queue-it.net/?c=thaiticketmajor&e=alt2wtkbkwts&ver=p2
+waiting... poll rate = 5sec
+new url = https://thaiticketmajor.queue-it.net/?c=thaiticketmajor&e=alt2wtkbkwts&ver=p2
+waiting... poll rate = 5sec
+new url = https://thaiticketmajor.queue-it.net/?c=thaiticketmajor&e=alt2wtkbkwts&ver=p2
+waiting... poll rate = 5sec
+new url = https://thaiticketmajor.queue-it.net/?c=thaiticketmajor&e=alt2wtkbkwts&ver=p2
+waiting... poll rate = 5sec
+new url = https://thaiticketmajor.queue-it.net/?c=thaiticketmajor&e=alt2wtkbkwts&ver=p2
+waiting... poll rate = 5sec
+new url = https://booking.thaiticketmajor.com/booking/3m/verify_condition.php?query=842
+TEST - FUCKER
+---->> <<----elapsed time --accept terms  1.12320876121521
+---->> <<----elapsed time --find zone  0.927722692489624
+---->> <<----elapsed time --find all .seatuncheck 0.011968374252319336
+len seat:--= 0
+---->> <<----elapsed time --build dic (new) 0.0
+_------- OUT
+[]
+NO seat found, moving to next zone
+---->> <<----elapsed time --find zone  1.112734317779541
+---->> <<----elapsed time --find all .seatuncheck 0.041886091232299805
+len seat:--= 0
+---->> <<----elapsed time --build dic (new) 0.0
+_------- OUT
+[]
+NO seat found, moving to next zone
+---->> <<----elapsed time --find zone  0.8873081207275391
+---->> <<----elapsed time --find all .seatuncheck 0.02294182777404785
+len seat:--= 0
+---->> <<----elapsed time --build dic (new) 0.0
+_------- OUT
+[]
+NO seat found, moving to next zone
+---->> <<----elapsed time --find zone  1.0435373783111572
+---->> <<----elapsed time --find all .seatuncheck 0.04088926315307617
+len seat:--= 0
+---->> <<----elapsed time --build dic (new) 0.0
+_------- OUT
+[]
+NO seat found, moving to next zone
+--len seat 0
+start any
+---->> <<----elapsed time --click seat 0.0
+Traceback (most recent call last):
+  File "f:\Work Folder\ticSeleBot\pipelineLauncher.py", line 68, in <module>
+    book.completeBooking(confirm=True,nameList=name_list)
+  File "f:\Work Folder\ticSeleBot\book.py", line 347, in completeBooking
+    driver.find_element(By.CSS_SELECTOR,"#booknow").click()
+  File "D:\Programs\python\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 831, in find_element
+    return self.execute(Command.FIND_ELEMENT, {"using": by, "value": value})["value"]
+  File "D:\Programs\python\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 440, in execute
+    self.error_handler.check_response(response)
+  File "D:\Programs\python\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 245, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"css selector","selector":"#booknow"}
+  (Session info: chrome=114.0.5735.134)
+Stacktrace:
+Backtrace:
+        GetHandleVerifier [0x00BCA813+48355]
+        (No symbol) [0x00B5C4B1]
+        (No symbol) [0x00A65358]
+        (No symbol) [0x00A909A5]
+        (No symbol) [0x00A90B3B]
+        (No symbol) [0x00ABE232]
+        (No symbol) [0x00AAA784]
+        (No symbol) [0x00ABC922]
+        (No symbol) [0x00AAA536]
+        (No symbol) [0x00A882DC]
+        (No symbol) [0x00A893DD]
+        GetHandleVerifier [0x00E2AABD+2539405]
+        GetHandleVerifier [0x00E6A78F+2800735]
+        GetHandleVerifier [0x00E6456C+2775612]
+        GetHandleVerifier [0x00C551E0+616112]
+        (No symbol) [0x00B65F8C]
+        (No symbol) [0x00B62328]
+        (No symbol) [0x00B6240B]
+        (No symbol) [0x00B54FF7]
+        BaseThreadInitThunk [0x76AD00C9+25]
+        RtlGetAppContainerNamedObjectPath [0x771F7B4E+286]
+        RtlGetAppContainerNamedObjectPath [0x771F7B1E+238]
+
+PS F:\Work Folder\ticSeleBot>

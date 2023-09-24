@@ -5,6 +5,7 @@ import selenium.webdriver.support.expected_conditions as EC
 import selenium.common.exceptions as EX
 from  selenium.webdriver.support.wait import WebDriverWait
 import time
+import numpy as np
 import logging
 from logging_config import configure_logging
 
@@ -259,12 +260,42 @@ def findZone(zone):
     print("---->> <<----elapsed time --findZone() ", end - start)
     logging.info(f"elapse time --findZone() {end-start}")
 
-def findAllSeatUnchecked(price):
+def findAllSeatUnchecked(price, notAvailable):
+    def remove_elements_method2(A, toRemove):
+        fid = []
+        #print("toRemove ", toRemove)
+        if len(toRemove) == 0:
+            return A
+        for idx,x in enumerate(A):
+            #print("88888----> ", x.get_attribute("data-seat"))
+            if x.get_attribute("data-seat") in toRemove:
+                fid.append(idx)
+            if (len(fid) == len(toRemove)):
+                break
+        #print(fid)
+        return (np.delete(A, fid)).tolist()
+    
     start = time.time()
     seats = driver.find_elements(By.CSS_SELECTOR,f'.seatuncheck[data-seat*="{price}"]')
     end = time.time()
-    
     print("---->> <<----elapsed time --find all .seatuncheck", end - start)
+    
+    print([i.get_attribute("data-seat") for i in seats][:20])
+    na = ["AE-05-P*6800","AE-06-P*6800","AE-07-P*6800","AE-08-P*6800"]
+    print("\n\n")
+    startx = time.time() 
+    seatx = [x for x in seats if x.get_attribute("data-seat") not in na]
+    endx = time.time() 
+    print([i.get_attribute("data-seat") for i in seatx][:20])
+    print("elapsed time --remove fuckedup --list comprehension", endx-startx)
+    print("\n\n")
+    starta = time.time() 
+    seatn = remove_elements_method2(seats,na)
+    enda = time.time() 
+    print([i.get_attribute("data-seat") for i in seatn][:20])
+    print("elapsed time --remove fuckedup --early stop", enda-starta)
+    print("\n\n")
+
     logging.info(f"elapse time --findAllSeatUnchecked() {end-start} len={len(seats)}")
     
     return seats
@@ -303,20 +334,17 @@ def clickSeat(limit,seats):
     print("start clickSeat")
     start = time.time()
     for i in range(limit):
-        time.sleep(0.2)
         try:
             seats[i].click()
             p = seats[i].get_attribute("data-seat")
             print("-->",p)
-            time.sleep(0.5)
             logging.info(f"-->{p}")
+            time.sleep(0.1)
         except EX.ElementClickInterceptedException:
-            driver.find_element(By.CSS_SELECTOR,"body > div.fancybox-overlay.fancybox-overlay-fixed > div > div > a").click()
             driver.refresh()
-           
             print(f"encountered seat already taken popup, --refreshing in place... problematic seat:{p}")
             logging.info("[CLICK FAILED] encountered seat already taken popup, --refreshing in place...")
-            return(False)
+            return(p)
     end = time.time()
     print("---->> <<----elapsed time --click seat", end - start)
     logging.info(f"elapse time --clickSeat() {end-start}")
@@ -330,30 +358,28 @@ def fillTicName(nameList):
 
 def completeBooking(nameList):
     currentURL = driver.current_url
-    
     print("CLICK BOOK NOW")
     driver.find_element(By.CSS_SELECTOR,"#booknow").click()
     try:
-        wait.until(EC.alert_is_present())
-        driver.find_element(By.CSS_SELECTOR,"#booknow").click()
-
-    except EX.UnexpectedAlertPresentException:
-        print("fucking popup encountered F")
-        driver.back()
+        newURL = driver.current_url
+        print(newURL==currentURL)
+        if newURL != currentURL:
+            print("URL CHANGED")
+            if "enroll_fixed" in newURL:
+                fillTicName(nameList)
+            wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR,"#btn_pickup"))).click()
+            wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR,"#btn_mobile"))).click()
+            wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR,"#btn_truemoney"))).click()
+            wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR,"#truemoney_contact"))).send_keys("0842564963")
+            time.sleep(0.5)
+            return True
+    except (EX.ElementClickInterceptedException, EX.UnexpectedAlertPresentException):
+        driver.switch_to().alert().accept()
         driver.refresh()
-        logging.info("! can't complete booking due to intercepted browser alert")
-
         return False
+        
     
 
-    if "enroll_fixed" in currentURL:
-        fillTicName(nameList)
-    wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR,"#btn_pickup"))).click()
-    wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR,"#btn_mobile"))).click()
-    wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR,"#btn_truemoney"))).click()
-    wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR,"#truemoney_contact"))).send_keys("0842564963")
-    time.sleep(0.5)
-    return True
 
     
 

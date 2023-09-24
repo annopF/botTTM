@@ -2,13 +2,13 @@
     "queue": false,
     "oneDay": true,
     "day": "1",
-    "zone_list": ["B2"],
+    "zone_list": ["B1"],
     "startTime": {"YEAR": 2023, "MONTH": 9, "DAY": 23, "HOUR": 10, "MINUTE": 0},
     "queueTime": {"YEAR": 2023, "MONTH": 9, "DAY": 23, "HOUR": 10, "MINUTE":0},
-    "ticketPrice": 4900,
-    "fee": 20,
+    "ticketPrice": 6800,
+    "fee": 0,
     "limit": 4,
     "mode": "any",
     "name_list": ["john1", "john2", "john3", "john4"],
-    "url": "https://www.thaiticketmajor.com/concert/2023-cravity-the-1st-world-tour-masterpiece-in-bangkok.html"
+    "url": "https://www.thaiticketmajor.com/concert/sam-smith-gloria-the-tour-bangkok.html"
 }

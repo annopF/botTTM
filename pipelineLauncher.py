@@ -63,8 +63,8 @@ Mstart = time.time()
 for zone in config.zone_list: #loop through zones in zone list
     book.findZone(zone)
     while not success: #this while loop keep looping over a zone in case the click fucntion got intercepted by "this seat has been taken" popup
-        seats = book.findAllSeatUnchecked(config.price)  
-       
+        seats= book.findAllSeatUnchecked(config.price, fuckedUpSeat)  
+        print("FUCKUP ", fuckedUpSeat)
         print("Zone:", config.price,zone)
         logging.info(f"----> current zone {zone, config.price}")
 
@@ -74,18 +74,29 @@ for zone in config.zone_list: #loop through zones in zone list
             break  #move to next zone by exiting this zone-level while loop and go to seatmap-level for loop
         
         if config.limit == 1 or (config.limit > 1 and config.mode == "any"):
-            if book.clickSeat(config.limit, seats) and book.completeBooking(config.name_list):
-                success = True
-                break
+            seatStage = book.clickSeat(config.limit, seats)
             
+            print("SEAT stage: ", seatStage)
+
+            if seatStage == True and book.completeBooking(config.name_list):
+                success = True
+                print("SUCCESS STAGE", success)
+                break
+            else:
+                print("fucked --->")
+                fuckedUpSeat.append(seatStage)
             
         elif config.limit > 1 and config.mode == "close":
             consecBlock = book.findConsecseats(config.limit, seats) #allocate continuous block of empty seats
             if len(consecBlock) >= config.limit:
-                if book.clickSeat(config.limit, consecBlock) and book.completeBooking(config.name_list): 
+                seatStage = book.clickSeat(config.limit, consecBlock)
+                print("SEAT stage: ", seatStage)
+                if seatStage == True and book.completeBooking(config.name_list): 
                     success = True
+
                     break
             else:
+                fuckedUpSeat.append(seatStage)
                 book.noSeatHandler()
                 break
 

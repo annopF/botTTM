@@ -1,0 +1,767 @@
+2023-09-24 12:48:49 - INFO - elapsed time --load+login 3.9111902713775635
+2023-09-24 12:49:08 - INFO - elapse time --oneDay() 18.619287729263306
+2023-09-24 12:49:23 - INFO - elapsed time --load+login 4.062270164489746
+2023-09-24 12:49:36 - INFO - elapse time --oneDay() 13.771047592163086
+2023-09-24 12:49:42 - INFO - elapse time --acceptTerms() 5.701992511749268
+2023-09-24 12:49:53 - INFO - elapse time --findZone() 10.537988185882568
+2023-09-24 12:49:57 - INFO - elapse time --findAllSeatUnchecked() 0.1436164379119873 len=143
+2023-09-24 12:49:57 - INFO - ----> current zone ('B1', '6800')
+2023-09-24 12:49:59 - INFO - -->AA-03-P*6800
+2023-09-24 12:49:59 - INFO - elapse time --clickSeat() 2.149268865585327
+2023-09-24 13:00:29 - INFO - elapsed time --load+login 3.421505928039551
+2023-09-24 13:00:41 - INFO - elapse time --oneDay() 12.03022050857544
+2023-09-24 13:13:30 - INFO - elapsed time --load+login 4.464405298233032
+2023-09-24 13:13:31 - INFO - Attempt #1: Message: stale element reference: stale element not found
+  (Session info: chrome=116.0.5845.188)
+Stacktrace:
+	GetHandleVerifier [0x00007FF7DB3252A2+57122]
+	(No symbol) [0x00007FF7DB29EA92]
+	(No symbol) [0x00007FF7DB16E3AB]
+	(No symbol) [0x00007FF7DB17ABC3]
+	(No symbol) [0x00007FF7DB172719]
+	(No symbol) [0x00007FF7DB17167A]
+	(No symbol) [0x00007FF7DB173D2F]
+	(No symbol) [0x00007FF7DB173E20]
+	(No symbol) [0x00007FF7DB1A94CC]
+	(No symbol) [0x00007FF7DB19F026]
+	(No symbol) [0x00007FF7DB1C6FDA]
+	(No symbol) [0x00007FF7DB19EB76]
+	(No symbol) [0x00007FF7DB1C71F0]
+	(No symbol) [0x00007FF7DB1DEB82]
+	(No symbol) [0x00007FF7DB1C6DB3]
+	(No symbol) [0x00007FF7DB19D2B1]
+	(No symbol) [0x00007FF7DB19E494]
+	GetHandleVerifier [0x00007FF7DB5CEF82+2849794]
+	GetHandleVerifier [0x00007FF7DB621D24+3189156]
+	GetHandleVerifier [0x00007FF7DB61ACAF+3160367]
+	GetHandleVerifier [0x00007FF7DB3B6D06+653702]
+	(No symbol) [0x00007FF7DB2AA208]
+	(No symbol) [0x00007FF7DB2A62C4]
+	(No symbol) [0x00007FF7DB2A63F6]
+	(No symbol) [0x00007FF7DB2967A3]
+	BaseThreadInitThunk [0x00007FFBC3C77344+20]
+	RtlUserThreadStart [0x00007FFBC5AA26B1+33]
+
+2023-09-24 13:13:33 - INFO - elapse time --oneDay() 2.424206495285034
+2023-09-24 13:13:34 - INFO - elapse time --acceptTerms() 1.3683218955993652
+2023-09-24 13:13:35 - INFO - elapse time --findZone() 1.146801233291626
+2023-09-24 13:13:44 - INFO - elapse time --findAllSeatUnchecked() 0.028922080993652344 len=143
+2023-09-24 13:13:44 - INFO - ----> current zone ('B1', '6800')
+2023-09-24 13:13:44 - INFO - -->AA-03-P*6800
+2023-09-24 13:13:45 - INFO - -->AB-01-P*6800
+2023-09-24 13:13:45 - INFO - -->AB-02-P*6800
+2023-09-24 13:13:45 - INFO - -->AB-03-P*6800
+2023-09-24 13:13:45 - INFO - elapse time --clickSeat() 1.2175543308258057
+2023-09-24 13:18:37 - INFO - elapsed time --load+login 4.252431154251099
+2023-09-24 13:18:38 - INFO - Attempt #1: Message: stale element reference: stale element not found
+  (Session info: chrome=116.0.5845.188)
+Stacktrace:
+	GetHandleVerifier [0x00007FF7DB3252A2+57122]
+	(No symbol) [0x00007FF7DB29EA92]
+	(No symbol) [0x00007FF7DB16E3AB]
+	(No symbol) [0x00007FF7DB17ABC3]
+	(No symbol) [0x00007FF7DB172719]
+	(No symbol) [0x00007FF7DB172823]
+	(No symbol) [0x00007FF7DB17167A]
+	(No symbol) [0x00007FF7DB174063]
+	(No symbol) [0x00007FF7DB1DF214]
+	(No symbol) [0x00007FF7DB1C6FDA]
+	(No symbol) [0x00007FF7DB1DEB82]
+	(No symbol) [0x00007FF7DB1C6DB3]
+	(No symbol) [0x00007FF7DB19D2B1]
+	(No symbol) [0x00007FF7DB19E494]
+	GetHandleVerifier [0x00007FF7DB5CEF82+2849794]
+	GetHandleVerifier [0x00007FF7DB621D24+3189156]
+	GetHandleVerifier [0x00007FF7DB61ACAF+3160367]
+	GetHandleVerifier [0x00007FF7DB3B6D06+653702]
+	(No symbol) [0x00007FF7DB2AA208]
+	(No symbol) [0x00007FF7DB2A62C4]
+	(No symbol) [0x00007FF7DB2A63F6]
+	(No symbol) [0x00007FF7DB2967A3]
+	BaseThreadInitThunk [0x00007FFBC3C77344+20]
+	RtlUserThreadStart [0x00007FFBC5AA26B1+33]
+
+2023-09-24 13:18:40 - INFO - elapse time --oneDay() 2.3510913848876953
+2023-09-24 13:18:41 - INFO - elapse time --acceptTerms() 1.4092071056365967
+2023-09-24 13:18:42 - INFO - elapse time --findZone() 1.1909174919128418
+2023-09-24 13:18:53 - INFO - elapse time --findAllSeatUnchecked() 0.029920101165771484 len=139
+2023-09-24 13:18:53 - INFO - ----> current zone ('B1', '6800')
+2023-09-24 13:18:53 - INFO - -->AD-01-P*6800
+2023-09-24 13:18:53 - INFO - -->AD-02-P*6800
+2023-09-24 13:18:54 - INFO - -->AD-03-P*6800
+2023-09-24 13:18:54 - INFO - -->AD-04-P*6800
+2023-09-24 13:18:54 - INFO - elapse time --clickSeat() 1.2972540855407715
+2023-09-24 13:20:33 - INFO - elapsed time --load+login 4.443736553192139
+2023-09-24 13:20:34 - INFO - Attempt #1: Message: stale element reference: stale element not found
+  (Session info: chrome=116.0.5845.188)
+Stacktrace:
+	GetHandleVerifier [0x00007FF7DB3252A2+57122]
+	(No symbol) [0x00007FF7DB29EA92]
+	(No symbol) [0x00007FF7DB16E3AB]
+	(No symbol) [0x00007FF7DB17ABC3]
+	(No symbol) [0x00007FF7DB172719]
+	(No symbol) [0x00007FF7DB172823]
+	(No symbol) [0x00007FF7DB17167A]
+	(No symbol) [0x00007FF7DB174063]
+	(No symbol) [0x00007FF7DB1DF214]
+	(No symbol) [0x00007FF7DB1C6FDA]
+	(No symbol) [0x00007FF7DB1DEB82]
+	(No symbol) [0x00007FF7DB1C6DB3]
+	(No symbol) [0x00007FF7DB19D2B1]
+	(No symbol) [0x00007FF7DB19E494]
+	GetHandleVerifier [0x00007FF7DB5CEF82+2849794]
+	GetHandleVerifier [0x00007FF7DB621D24+3189156]
+	GetHandleVerifier [0x00007FF7DB61ACAF+3160367]
+	GetHandleVerifier [0x00007FF7DB3B6D06+653702]
+	(No symbol) [0x00007FF7DB2AA208]
+	(No symbol) [0x00007FF7DB2A62C4]
+	(No symbol) [0x00007FF7DB2A63F6]
+	(No symbol) [0x00007FF7DB2967A3]
+	BaseThreadInitThunk [0x00007FFBC3C77344+20]
+	RtlUserThreadStart [0x00007FFBC5AA26B1+33]
+
+2023-09-24 13:20:36 - INFO - elapse time --oneDay() 2.7287368774414062
+2023-09-24 13:20:37 - INFO - elapse time --acceptTerms() 1.5063602924346924
+2023-09-24 13:20:39 - INFO - elapse time --findZone() 1.8489913940429688
+2023-09-24 13:20:52 - INFO - elapse time --findAllSeatUnchecked() 0.027925729751586914 len=139
+2023-09-24 13:20:52 - INFO - ----> current zone ('B1', '6800')
+2023-09-24 13:20:52 - INFO - -->AD-01-P*6800
+2023-09-24 13:20:53 - INFO - -->AD-02-P*6800
+2023-09-24 13:20:53 - INFO - -->AD-03-P*6800
+2023-09-24 13:20:53 - INFO - -->AD-04-P*6800
+2023-09-24 13:20:53 - INFO - elapse time --clickSeat() 1.3226122856140137
+2023-09-24 13:25:41 - INFO - elapsed time --load+login 4.005334377288818
+2023-09-24 13:25:42 - INFO - Attempt #1: Message: stale element reference: stale element not found
+  (Session info: chrome=116.0.5845.188)
+Stacktrace:
+	GetHandleVerifier [0x00007FF7DB3252A2+57122]
+	(No symbol) [0x00007FF7DB29EA92]
+	(No symbol) [0x00007FF7DB16E3AB]
+	(No symbol) [0x00007FF7DB17ABC3]
+	(No symbol) [0x00007FF7DB172719]
+	(No symbol) [0x00007FF7DB172823]
+	(No symbol) [0x00007FF7DB17167A]
+	(No symbol) [0x00007FF7DB174063]
+	(No symbol) [0x00007FF7DB1DF214]
+	(No symbol) [0x00007FF7DB1C6FDA]
+	(No symbol) [0x00007FF7DB1DEB82]
+	(No symbol) [0x00007FF7DB1C6DB3]
+	(No symbol) [0x00007FF7DB19D2B1]
+	(No symbol) [0x00007FF7DB19E494]
+	GetHandleVerifier [0x00007FF7DB5CEF82+2849794]
+	GetHandleVerifier [0x00007FF7DB621D24+3189156]
+	GetHandleVerifier [0x00007FF7DB61ACAF+3160367]
+	GetHandleVerifier [0x00007FF7DB3B6D06+653702]
+	(No symbol) [0x00007FF7DB2AA208]
+	(No symbol) [0x00007FF7DB2A62C4]
+	(No symbol) [0x00007FF7DB2A63F6]
+	(No symbol) [0x00007FF7DB2967A3]
+	BaseThreadInitThunk [0x00007FFBC3C77344+20]
+	RtlUserThreadStart [0x00007FFBC5AA26B1+33]
+
+2023-09-24 13:25:43 - INFO - elapse time --oneDay() 2.5455052852630615
+2023-09-24 13:25:44 - INFO - elapse time --acceptTerms() 1.266556978225708
+2023-09-24 13:25:48 - INFO - elapse time --findZone() 3.120851993560791
+2023-09-24 13:26:05 - INFO - elapse time --findAllSeatUnchecked() 0.055850982666015625 len=143
+2023-09-24 13:26:05 - INFO - ----> current zone ('B1', '6800')
+2023-09-24 13:26:05 - INFO - -->AA-03-P*6800
+2023-09-24 13:26:07 - INFO - [CLICK FAILED] encountered seat already taken popup, --refreshing in place...
+2023-09-24 13:26:23 - INFO - elapse time --findAllSeatUnchecked() 0.057847023010253906 len=143
+2023-09-24 13:26:23 - INFO - ----> current zone ('B1', '6800')
+2023-09-24 13:26:24 - INFO - -->AA-03-P*6800
+2023-09-24 13:26:26 - INFO - [CLICK FAILED] encountered seat already taken popup, --refreshing in place...
+2023-09-24 13:26:40 - INFO - elapse time --findAllSeatUnchecked() 0.1077113151550293 len=143
+2023-09-24 13:26:40 - INFO - ----> current zone ('B1', '6800')
+2023-09-24 13:26:40 - INFO - -->AA-03-P*6800
+2023-09-24 13:26:43 - INFO - [CLICK FAILED] encountered seat already taken popup, --refreshing in place...
+2023-09-24 13:26:57 - INFO - elapse time --findAllSeatUnchecked() 0.06712055206298828 len=143
+2023-09-24 13:26:57 - INFO - ----> current zone ('B1', '6800')
+2023-09-24 13:26:57 - INFO - -->AA-03-P*6800
+2023-09-24 13:27:00 - INFO - [CLICK FAILED] encountered seat already taken popup, --refreshing in place...
+2023-09-24 14:31:41 - INFO - elapsed time --load+login 4.033486366271973
+2023-09-24 14:31:44 - INFO - elapse time --oneDay() 2.6073403358459473
+2023-09-24 14:31:45 - INFO - elapse time --acceptTerms() 1.5557880401611328
+2023-09-24 14:31:47 - INFO - elapse time --findZone() 1.7956209182739258
+2023-09-24 14:33:09 - INFO - elapsed time --load+login 3.690725803375244
+2023-09-24 14:33:10 - INFO - Attempt #1: Message: element click intercepted: Element <a onclick="$app.popup.signin('https://booking.thaiticketmajor.com/booking/3m/zones.php?query=465&amp;rdId=73719');" class="btn-red btn-buynow btn-item">...</a> is not clickable at point (535, 848). Other element would receive the click: <div class="fancybox-overlay fancybox-overlay-fixed" style="width: auto; height: auto; display: block;">...</div>
+  (Session info: chrome=116.0.5845.188)
+Stacktrace:
+	GetHandleVerifier [0x00007FF6F2E852A2+57122]
+	(No symbol) [0x00007FF6F2DFEA92]
+	(No symbol) [0x00007FF6F2CCE3AB]
+	(No symbol) [0x00007FF6F2D0D783]
+	(No symbol) [0x00007FF6F2D0BD5F]
+	(No symbol) [0x00007FF6F2D09DC8]
+	(No symbol) [0x00007FF6F2D08FD5]
+	(No symbol) [0x00007FF6F2CFF25F]
+	(No symbol) [0x00007FF6F2D26FDA]
+	(No symbol) [0x00007FF6F2CFEB76]
+	(No symbol) [0x00007FF6F2D271F0]
+	(No symbol) [0x00007FF6F2D3EB82]
+	(No symbol) [0x00007FF6F2D26DB3]
+	(No symbol) [0x00007FF6F2CFD2B1]
+	(No symbol) [0x00007FF6F2CFE494]
+	GetHandleVerifier [0x00007FF6F312EF82+2849794]
+	GetHandleVerifier [0x00007FF6F3181D24+3189156]
+	GetHandleVerifier [0x00007FF6F317ACAF+3160367]
+	GetHandleVerifier [0x00007FF6F2F16D06+653702]
+	(No symbol) [0x00007FF6F2E0A208]
+	(No symbol) [0x00007FF6F2E062C4]
+	(No symbol) [0x00007FF6F2E063F6]
+	(No symbol) [0x00007FF6F2DF67A3]
+	BaseThreadInitThunk [0x00007FFBC3C77344+20]
+	RtlUserThreadStart [0x00007FFBC5AA26B1+33]
+
+2023-09-24 14:33:11 - INFO - Attempt #2: Message: element click intercepted: Element <a onclick="$app.popup.signin('https://booking.thaiticketmajor.com/booking/3m/zones.php?query=465&amp;rdId=73719');" class="btn-red btn-buynow btn-item">...</a> is not clickable at point (535, 848). Other element would receive the click: <div class="fancybox-overlay fancybox-overlay-fixed" style="width: auto; height: auto; display: block;">...</div>
+  (Session info: chrome=116.0.5845.188)
+Stacktrace:
+	GetHandleVerifier [0x00007FF6F2E852A2+57122]
+	(No symbol) [0x00007FF6F2DFEA92]
+	(No symbol) [0x00007FF6F2CCE3AB]
+	(No symbol) [0x00007FF6F2D0D783]
+	(No symbol) [0x00007FF6F2D0BD5F]
+	(No symbol) [0x00007FF6F2D09DC8]
+	(No symbol) [0x00007FF6F2D08FD5]
+	(No symbol) [0x00007FF6F2CFF25F]
+	(No symbol) [0x00007FF6F2D26FDA]
+	(No symbol) [0x00007FF6F2CFEB76]
+	(No symbol) [0x00007FF6F2D271F0]
+	(No symbol) [0x00007FF6F2D3EB82]
+	(No symbol) [0x00007FF6F2D26DB3]
+	(No symbol) [0x00007FF6F2CFD2B1]
+	(No symbol) [0x00007FF6F2CFE494]
+	GetHandleVerifier [0x00007FF6F312EF82+2849794]
+	GetHandleVerifier [0x00007FF6F3181D24+3189156]
+	GetHandleVerifier [0x00007FF6F317ACAF+3160367]
+	GetHandleVerifier [0x00007FF6F2F16D06+653702]
+	(No symbol) [0x00007FF6F2E0A208]
+	(No symbol) [0x00007FF6F2E062C4]
+	(No symbol) [0x00007FF6F2E063F6]
+	(No symbol) [0x00007FF6F2DF67A3]
+	BaseThreadInitThunk [0x00007FFBC3C77344+20]
+	RtlUserThreadStart [0x00007FFBC5AA26B1+33]
+
+2023-09-24 14:33:12 - INFO - Attempt #3: Message: element click intercepted: Element <a onclick="$app.popup.signin('https://booking.thaiticketmajor.com/booking/3m/zones.php?query=465&amp;rdId=73719');" class="btn-red btn-buynow btn-item">...</a> is not clickable at point (535, 848). Other element would receive the click: <div class="fancybox-overlay fancybox-overlay-fixed" style="width: auto; height: auto; display: block;">...</div>
+  (Session info: chrome=116.0.5845.188)
+Stacktrace:
+	GetHandleVerifier [0x00007FF6F2E852A2+57122]
+	(No symbol) [0x00007FF6F2DFEA92]
+	(No symbol) [0x00007FF6F2CCE3AB]
+	(No symbol) [0x00007FF6F2D0D783]
+	(No symbol) [0x00007FF6F2D0BD5F]
+	(No symbol) [0x00007FF6F2D09DC8]
+	(No symbol) [0x00007FF6F2D08FD5]
+	(No symbol) [0x00007FF6F2CFF25F]
+	(No symbol) [0x00007FF6F2D26FDA]
+	(No symbol) [0x00007FF6F2CFEB76]
+	(No symbol) [0x00007FF6F2D271F0]
+	(No symbol) [0x00007FF6F2D3EB82]
+	(No symbol) [0x00007FF6F2D26DB3]
+	(No symbol) [0x00007FF6F2CFD2B1]
+	(No symbol) [0x00007FF6F2CFE494]
+	GetHandleVerifier [0x00007FF6F312EF82+2849794]
+	GetHandleVerifier [0x00007FF6F3181D24+3189156]
+	GetHandleVerifier [0x00007FF6F317ACAF+3160367]
+	GetHandleVerifier [0x00007FF6F2F16D06+653702]
+	(No symbol) [0x00007FF6F2E0A208]
+	(No symbol) [0x00007FF6F2E062C4]
+	(No symbol) [0x00007FF6F2E063F6]
+	(No symbol) [0x00007FF6F2DF67A3]
+	BaseThreadInitThunk [0x00007FFBC3C77344+20]
+	RtlUserThreadStart [0x00007FFBC5AA26B1+33]
+
+2023-09-24 14:33:13 - INFO - Attempt #4: Message: element click intercepted: Element <a onclick="$app.popup.signin('https://booking.thaiticketmajor.com/booking/3m/zones.php?query=465&amp;rdId=73719');" class="btn-red btn-buynow btn-item">...</a> is not clickable at point (535, 848). Other element would receive the click: <div class="fancybox-overlay fancybox-overlay-fixed" style="width: auto; height: auto; display: block;">...</div>
+  (Session info: chrome=116.0.5845.188)
+Stacktrace:
+	GetHandleVerifier [0x00007FF6F2E852A2+57122]
+	(No symbol) [0x00007FF6F2DFEA92]
+	(No symbol) [0x00007FF6F2CCE3AB]
+	(No symbol) [0x00007FF6F2D0D783]
+	(No symbol) [0x00007FF6F2D0BD5F]
+	(No symbol) [0x00007FF6F2D09DC8]
+	(No symbol) [0x00007FF6F2D08FD5]
+	(No symbol) [0x00007FF6F2CFF25F]
+	(No symbol) [0x00007FF6F2D26FDA]
+	(No symbol) [0x00007FF6F2CFEB76]
+	(No symbol) [0x00007FF6F2D271F0]
+	(No symbol) [0x00007FF6F2D3EB82]
+	(No symbol) [0x00007FF6F2D26DB3]
+	(No symbol) [0x00007FF6F2CFD2B1]
+	(No symbol) [0x00007FF6F2CFE494]
+	GetHandleVerifier [0x00007FF6F312EF82+2849794]
+	GetHandleVerifier [0x00007FF6F3181D24+3189156]
+	GetHandleVerifier [0x00007FF6F317ACAF+3160367]
+	GetHandleVerifier [0x00007FF6F2F16D06+653702]
+	(No symbol) [0x00007FF6F2E0A208]
+	(No symbol) [0x00007FF6F2E062C4]
+	(No symbol) [0x00007FF6F2E063F6]
+	(No symbol) [0x00007FF6F2DF67A3]
+	BaseThreadInitThunk [0x00007FFBC3C77344+20]
+	RtlUserThreadStart [0x00007FFBC5AA26B1+33]
+
+2023-09-24 14:33:16 - INFO - Attempt #5: Message: stale element reference: stale element not found
+  (Session info: chrome=116.0.5845.188)
+Stacktrace:
+	GetHandleVerifier [0x00007FF6F2E852A2+57122]
+	(No symbol) [0x00007FF6F2DFEA92]
+	(No symbol) [0x00007FF6F2CCE3AB]
+	(No symbol) [0x00007FF6F2CDABC3]
+	(No symbol) [0x00007FF6F2CD2719]
+	(No symbol) [0x00007FF6F2CD167A]
+	(No symbol) [0x00007FF6F2CD3D2F]
+	(No symbol) [0x00007FF6F2CD3E20]
+	(No symbol) [0x00007FF6F2D094CC]
+	(No symbol) [0x00007FF6F2CFF026]
+	(No symbol) [0x00007FF6F2D26FDA]
+	(No symbol) [0x00007FF6F2CFEB76]
+	(No symbol) [0x00007FF6F2D271F0]
+	(No symbol) [0x00007FF6F2D3EB82]
+	(No symbol) [0x00007FF6F2D26DB3]
+	(No symbol) [0x00007FF6F2CFD2B1]
+	(No symbol) [0x00007FF6F2CFE494]
+	GetHandleVerifier [0x00007FF6F312EF82+2849794]
+	GetHandleVerifier [0x00007FF6F3181D24+3189156]
+	GetHandleVerifier [0x00007FF6F317ACAF+3160367]
+	GetHandleVerifier [0x00007FF6F2F16D06+653702]
+	(No symbol) [0x00007FF6F2E0A208]
+	(No symbol) [0x00007FF6F2E062C4]
+	(No symbol) [0x00007FF6F2E063F6]
+	(No symbol) [0x00007FF6F2DF67A3]
+	BaseThreadInitThunk [0x00007FFBC3C77344+20]
+	RtlUserThreadStart [0x00007FFBC5AA26B1+33]
+
+2023-09-24 14:33:17 - INFO - elapse time --oneDay() 8.072535991668701
+2023-09-24 14:33:18 - INFO - elapse time --acceptTerms() 1.2348580360412598
+2023-09-24 14:33:20 - INFO - elapse time --findZone() 1.3327138423919678
+2023-09-24 14:33:29 - INFO - elapse time --findAllSeatUnchecked() 0.03291177749633789 len=143
+2023-09-24 14:33:29 - INFO - ----> current zone ('B1', '6800')
+2023-09-24 14:33:29 - INFO - -->AA-03-P*6800
+2023-09-24 14:33:29 - INFO - -->AB-01-P*6800
+2023-09-24 14:33:29 - INFO - -->AB-02-P*6800
+2023-09-24 14:33:30 - INFO - -->AB-03-P*6800
+2023-09-24 14:33:30 - INFO - elapse time --clickSeat() 1.2516217231750488
+2023-09-24 14:33:34 - INFO - ------SUCCESS: MAIN LOOP TERMINATED------, TIME TAKEN: 15.506850481033325
+2023-09-24 14:34:58 - INFO - elapsed time --load+login 4.0438079833984375
+2023-09-24 14:34:59 - INFO - Attempt #1: Message: stale element reference: stale element not found
+  (Session info: chrome=116.0.5845.188)
+Stacktrace:
+	GetHandleVerifier [0x00007FF6F2E852A2+57122]
+	(No symbol) [0x00007FF6F2DFEA92]
+	(No symbol) [0x00007FF6F2CCE3AB]
+	(No symbol) [0x00007FF6F2CDABC3]
+	(No symbol) [0x00007FF6F2CD2719]
+	(No symbol) [0x00007FF6F2CD2823]
+	(No symbol) [0x00007FF6F2CD167A]
+	(No symbol) [0x00007FF6F2CD4063]
+	(No symbol) [0x00007FF6F2D3F214]
+	(No symbol) [0x00007FF6F2D26FDA]
+	(No symbol) [0x00007FF6F2D3EB82]
+	(No symbol) [0x00007FF6F2D26DB3]
+	(No symbol) [0x00007FF6F2CFD2B1]
+	(No symbol) [0x00007FF6F2CFE494]
+	GetHandleVerifier [0x00007FF6F312EF82+2849794]
+	GetHandleVerifier [0x00007FF6F3181D24+3189156]
+	GetHandleVerifier [0x00007FF6F317ACAF+3160367]
+	GetHandleVerifier [0x00007FF6F2F16D06+653702]
+	(No symbol) [0x00007FF6F2E0A208]
+	(No symbol) [0x00007FF6F2E062C4]
+	(No symbol) [0x00007FF6F2E063F6]
+	(No symbol) [0x00007FF6F2DF67A3]
+	BaseThreadInitThunk [0x00007FFBC3C77344+20]
+	RtlUserThreadStart [0x00007FFBC5AA26B1+33]
+
+2023-09-24 14:35:01 - INFO - elapse time --oneDay() 2.567235231399536
+2023-09-24 14:35:02 - INFO - elapse time --acceptTerms() 1.3425781726837158
+2023-09-24 14:35:03 - INFO - elapse time --findZone() 1.3679285049438477
+2023-09-24 14:35:15 - INFO - elapse time --findAllSeatUnchecked() 0.022938013076782227 len=139
+2023-09-24 14:35:15 - INFO - ----> current zone ('B1', '6800')
+2023-09-24 14:35:15 - INFO - -->AD-01-P*6800
+2023-09-24 14:35:16 - INFO - -->AD-02-P*6800
+2023-09-24 14:35:16 - INFO - -->AD-03-P*6800
+2023-09-24 14:35:16 - INFO - -->AD-04-P*6800
+2023-09-24 14:35:17 - INFO - elapse time --clickSeat() 1.6478304862976074
+2023-09-24 14:37:30 - INFO - elapsed time --load+login 4.1405720710754395
+2023-09-24 14:37:32 - INFO - elapse time --oneDay() 2.6385133266448975
+2023-09-24 14:37:34 - INFO - elapse time --acceptTerms() 1.6549742221832275
+2023-09-24 14:37:35 - INFO - elapse time --findZone() 1.075585126876831
+2023-09-24 14:37:47 - INFO - elapse time --findAllSeatUnchecked() 0.028922080993652344 len=135
+2023-09-24 14:37:47 - INFO - ----> current zone ('B1', '6800')
+2023-09-24 14:37:47 - INFO - -->AD-05-P*6800
+2023-09-24 14:37:47 - INFO - -->AE-02-P*6800
+2023-09-24 14:37:47 - INFO - -->AE-03-P*6800
+2023-09-24 14:37:48 - INFO - -->AE-04-P*6800
+2023-09-24 14:37:48 - INFO - elapse time --clickSeat() 1.2365849018096924
+2023-09-24 14:37:52 - INFO - ------SUCCESS: MAIN LOOP TERMINATED------, TIME TAKEN: 17.79303550720215
+2023-09-24 14:40:27 - INFO - elapsed time --load+login 4.247084856033325
+2023-09-24 14:40:28 - INFO - Attempt #1: Message: stale element reference: stale element not found
+  (Session info: chrome=116.0.5845.188)
+Stacktrace:
+	GetHandleVerifier [0x00007FF6F2E852A2+57122]
+	(No symbol) [0x00007FF6F2DFEA92]
+	(No symbol) [0x00007FF6F2CCE3AB]
+	(No symbol) [0x00007FF6F2CDABC3]
+	(No symbol) [0x00007FF6F2CD2719]
+	(No symbol) [0x00007FF6F2CD167A]
+	(No symbol) [0x00007FF6F2CD3D2F]
+	(No symbol) [0x00007FF6F2CD3E20]
+	(No symbol) [0x00007FF6F2D094CC]
+	(No symbol) [0x00007FF6F2CFF026]
+	(No symbol) [0x00007FF6F2D26FDA]
+	(No symbol) [0x00007FF6F2CFEB76]
+	(No symbol) [0x00007FF6F2D271F0]
+	(No symbol) [0x00007FF6F2D3EB82]
+	(No symbol) [0x00007FF6F2D26DB3]
+	(No symbol) [0x00007FF6F2CFD2B1]
+	(No symbol) [0x00007FF6F2CFE494]
+	GetHandleVerifier [0x00007FF6F312EF82+2849794]
+	GetHandleVerifier [0x00007FF6F3181D24+3189156]
+	GetHandleVerifier [0x00007FF6F317ACAF+3160367]
+	GetHandleVerifier [0x00007FF6F2F16D06+653702]
+	(No symbol) [0x00007FF6F2E0A208]
+	(No symbol) [0x00007FF6F2E062C4]
+	(No symbol) [0x00007FF6F2E063F6]
+	(No symbol) [0x00007FF6F2DF67A3]
+	BaseThreadInitThunk [0x00007FFBC3C77344+20]
+	RtlUserThreadStart [0x00007FFBC5AA26B1+33]
+
+2023-09-24 14:40:29 - INFO - elapse time --oneDay() 2.6250879764556885
+2023-09-24 14:40:31 - INFO - elapse time --acceptTerms() 1.3656694889068604
+2023-09-24 14:40:33 - INFO - elapse time --findZone() 1.7694613933563232
+2023-09-24 14:40:45 - INFO - elapse time --findAllSeatUnchecked() 0.04886817932128906 len=139
+2023-09-24 14:40:45 - INFO - ----> current zone ('B1', '6800')
+2023-09-24 14:40:45 - INFO - -->AA-03-P*6800
+2023-09-24 14:40:45 - INFO - -->AB-01-P*6800
+2023-09-24 14:40:45 - INFO - -->AB-02-P*6800
+2023-09-24 14:40:46 - INFO - -->AB-03-P*6800
+2023-09-24 14:40:46 - INFO - elapse time --clickSeat() 1.2596142292022705
+2023-09-24 14:42:37 - INFO - elapsed time --load+login 4.338332891464233
+2023-09-24 14:42:38 - INFO - Attempt #1: Message: stale element reference: stale element not found
+  (Session info: chrome=116.0.5845.188)
+Stacktrace:
+	GetHandleVerifier [0x00007FF6F2E852A2+57122]
+	(No symbol) [0x00007FF6F2DFEA92]
+	(No symbol) [0x00007FF6F2CCE3AB]
+	(No symbol) [0x00007FF6F2CDABC3]
+	(No symbol) [0x00007FF6F2CD2719]
+	(No symbol) [0x00007FF6F2CD2823]
+	(No symbol) [0x00007FF6F2CD167A]
+	(No symbol) [0x00007FF6F2CD4063]
+	(No symbol) [0x00007FF6F2D3F214]
+	(No symbol) [0x00007FF6F2D26FDA]
+	(No symbol) [0x00007FF6F2D3EB82]
+	(No symbol) [0x00007FF6F2D26DB3]
+	(No symbol) [0x00007FF6F2CFD2B1]
+	(No symbol) [0x00007FF6F2CFE494]
+	GetHandleVerifier [0x00007FF6F312EF82+2849794]
+	GetHandleVerifier [0x00007FF6F3181D24+3189156]
+	GetHandleVerifier [0x00007FF6F317ACAF+3160367]
+	GetHandleVerifier [0x00007FF6F2F16D06+653702]
+	(No symbol) [0x00007FF6F2E0A208]
+	(No symbol) [0x00007FF6F2E062C4]
+	(No symbol) [0x00007FF6F2E063F6]
+	(No symbol) [0x00007FF6F2DF67A3]
+	BaseThreadInitThunk [0x00007FFBC3C77344+20]
+	RtlUserThreadStart [0x00007FFBC5AA26B1+33]
+
+2023-09-24 14:42:40 - INFO - elapse time --oneDay() 3.162843942642212
+2023-09-24 14:42:41 - INFO - elapse time --acceptTerms() 1.2310230731964111
+2023-09-24 14:42:42 - INFO - elapse time --findZone() 1.3658032417297363
+2023-09-24 14:42:53 - INFO - elapse time --findAllSeatUnchecked() 0.029918909072875977 len=135
+2023-09-24 14:42:53 - INFO - ----> current zone ('B1', '6800')
+2023-09-24 14:42:53 - INFO - -->AD-05-P*6800
+2023-09-24 14:42:53 - INFO - -->AE-02-P*6800
+2023-09-24 14:42:54 - INFO - -->AE-03-P*6800
+2023-09-24 14:42:54 - INFO - -->AE-04-P*6800
+2023-09-24 14:42:54 - INFO - elapse time --clickSeat() 1.259281873703003
+2023-09-24 14:42:58 - INFO - ------SUCCESS: MAIN LOOP TERMINATED------, TIME TAKEN: 16.971625566482544
+2023-09-24 14:43:38 - INFO - elapsed time --load+login 3.8292276859283447
+2023-09-24 14:43:40 - INFO - Attempt #1: Message: stale element reference: stale element not found
+  (Session info: chrome=116.0.5845.188)
+Stacktrace:
+	GetHandleVerifier [0x00007FF6F2E852A2+57122]
+	(No symbol) [0x00007FF6F2DFEA92]
+	(No symbol) [0x00007FF6F2CCE3AB]
+	(No symbol) [0x00007FF6F2CDABC3]
+	(No symbol) [0x00007FF6F2CD2719]
+	(No symbol) [0x00007FF6F2CD2823]
+	(No symbol) [0x00007FF6F2CD167A]
+	(No symbol) [0x00007FF6F2CD4063]
+	(No symbol) [0x00007FF6F2D3F214]
+	(No symbol) [0x00007FF6F2D26FDA]
+	(No symbol) [0x00007FF6F2D3EB82]
+	(No symbol) [0x00007FF6F2D26DB3]
+	(No symbol) [0x00007FF6F2CFD2B1]
+	(No symbol) [0x00007FF6F2CFE494]
+	GetHandleVerifier [0x00007FF6F312EF82+2849794]
+	GetHandleVerifier [0x00007FF6F3181D24+3189156]
+	GetHandleVerifier [0x00007FF6F317ACAF+3160367]
+	GetHandleVerifier [0x00007FF6F2F16D06+653702]
+	(No symbol) [0x00007FF6F2E0A208]
+	(No symbol) [0x00007FF6F2E062C4]
+	(No symbol) [0x00007FF6F2E063F6]
+	(No symbol) [0x00007FF6F2DF67A3]
+	BaseThreadInitThunk [0x00007FFBC3C77344+20]
+	RtlUserThreadStart [0x00007FFBC5AA26B1+33]
+
+2023-09-24 14:43:41 - INFO - elapse time --oneDay() 2.318269729614258
+2023-09-24 14:43:42 - INFO - elapse time --acceptTerms() 1.219289779663086
+2023-09-24 14:43:43 - INFO - elapse time --findZone() 1.1784467697143555
+2023-09-24 14:43:53 - INFO - elapse time --findAllSeatUnchecked() 0.02792501449584961 len=131
+2023-09-24 14:43:53 - INFO - ----> current zone ('B1', '6800')
+2023-09-24 14:43:53 - INFO - -->AE-05-P*6800
+2023-09-24 14:43:53 - INFO - -->AE-06-P*6800
+2023-09-24 14:43:54 - INFO - -->AE-07-P*6800
+2023-09-24 14:43:54 - INFO - -->AE-08-P*6800
+2023-09-24 14:43:54 - INFO - elapse time --clickSeat() 1.4604108333587646
+2023-09-24 14:43:58 - INFO - ------SUCCESS: MAIN LOOP TERMINATED------, TIME TAKEN: 16.375014543533325
+2023-09-24 14:44:51 - INFO - elapsed time --load+login 4.312496900558472
+2023-09-24 14:44:52 - INFO - Attempt #1: Message: stale element reference: stale element not found
+  (Session info: chrome=116.0.5845.188)
+Stacktrace:
+	GetHandleVerifier [0x00007FF6F2E852A2+57122]
+	(No symbol) [0x00007FF6F2DFEA92]
+	(No symbol) [0x00007FF6F2CCE3AB]
+	(No symbol) [0x00007FF6F2CDABC3]
+	(No symbol) [0x00007FF6F2CD2719]
+	(No symbol) [0x00007FF6F2CD2823]
+	(No symbol) [0x00007FF6F2CD167A]
+	(No symbol) [0x00007FF6F2CD4063]
+	(No symbol) [0x00007FF6F2D3F214]
+	(No symbol) [0x00007FF6F2D26FDA]
+	(No symbol) [0x00007FF6F2D3EB82]
+	(No symbol) [0x00007FF6F2D26DB3]
+	(No symbol) [0x00007FF6F2CFD2B1]
+	(No symbol) [0x00007FF6F2CFE494]
+	GetHandleVerifier [0x00007FF6F312EF82+2849794]
+	GetHandleVerifier [0x00007FF6F3181D24+3189156]
+	GetHandleVerifier [0x00007FF6F317ACAF+3160367]
+	GetHandleVerifier [0x00007FF6F2F16D06+653702]
+	(No symbol) [0x00007FF6F2E0A208]
+	(No symbol) [0x00007FF6F2E062C4]
+	(No symbol) [0x00007FF6F2E063F6]
+	(No symbol) [0x00007FF6F2DF67A3]
+	BaseThreadInitThunk [0x00007FFBC3C77344+20]
+	RtlUserThreadStart [0x00007FFBC5AA26B1+33]
+
+2023-09-24 14:44:53 - INFO - elapse time --oneDay() 2.6428041458129883
+2023-09-24 14:44:55 - INFO - elapse time --acceptTerms() 1.3088500499725342
+2023-09-24 14:44:57 - INFO - elapse time --findZone() 1.9750034809112549
+2023-09-24 14:45:08 - INFO - elapse time --findAllSeatUnchecked() 0.053858041763305664 len=131
+2023-09-24 14:45:08 - INFO - ----> current zone ('B1', '6800')
+2023-09-24 14:45:09 - INFO - -->AE-05-P*6800
+2023-09-24 14:45:09 - INFO - -->AE-06-P*6800
+2023-09-24 14:45:09 - INFO - -->AE-07-P*6800
+2023-09-24 14:45:10 - INFO - -->AE-08-P*6800
+2023-09-24 14:45:10 - INFO - elapse time --clickSeat() 1.3303747177124023
+2023-09-24 15:06:52 - INFO - elapsed time --load+login 5.355062007904053
+2023-09-24 15:06:56 - INFO - elapse time --oneDay() 4.315640926361084
+2023-09-24 15:06:57 - INFO - elapse time --acceptTerms() 1.3890016078948975
+2023-09-24 15:06:59 - INFO - elapse time --findZone() 1.5091655254364014
+2023-09-24 15:07:09 - INFO - elapse time --findAllSeatUnchecked() 0.11768436431884766 len=143
+2023-09-24 15:07:09 - INFO - ----> current zone ('B1', '6800')
+2023-09-24 15:07:10 - INFO - -->AA-03-P*6800
+2023-09-24 15:07:10 - INFO - -->AB-01-P*6800
+2023-09-24 15:07:10 - INFO - -->AB-02-P*6800
+2023-09-24 15:07:11 - INFO - -->AB-03-P*6800
+2023-09-24 15:07:11 - INFO - elapse time --clickSeat() 1.523226022720337
+2023-09-24 15:07:15 - INFO - ------SUCCESS: MAIN LOOP TERMINATED------, TIME TAKEN: 17.704543113708496
+2023-09-24 15:09:07 - INFO - elapsed time --load+login 4.702608346939087
+2023-09-24 15:09:09 - INFO - Attempt #1: Message: stale element reference: stale element not found
+  (Session info: chrome=116.0.5845.188)
+Stacktrace:
+	GetHandleVerifier [0x00007FF6F2E852A2+57122]
+	(No symbol) [0x00007FF6F2DFEA92]
+	(No symbol) [0x00007FF6F2CCE3AB]
+	(No symbol) [0x00007FF6F2CDABC3]
+	(No symbol) [0x00007FF6F2CD2719]
+	(No symbol) [0x00007FF6F2CD2823]
+	(No symbol) [0x00007FF6F2CD167A]
+	(No symbol) [0x00007FF6F2CD4063]
+	(No symbol) [0x00007FF6F2D3F214]
+	(No symbol) [0x00007FF6F2D26FDA]
+	(No symbol) [0x00007FF6F2D3EB82]
+	(No symbol) [0x00007FF6F2D26DB3]
+	(No symbol) [0x00007FF6F2CFD2B1]
+	(No symbol) [0x00007FF6F2CFE494]
+	GetHandleVerifier [0x00007FF6F312EF82+2849794]
+	GetHandleVerifier [0x00007FF6F3181D24+3189156]
+	GetHandleVerifier [0x00007FF6F317ACAF+3160367]
+	GetHandleVerifier [0x00007FF6F2F16D06+653702]
+	(No symbol) [0x00007FF6F2E0A208]
+	(No symbol) [0x00007FF6F2E062C4]
+	(No symbol) [0x00007FF6F2E063F6]
+	(No symbol) [0x00007FF6F2DF67A3]
+	BaseThreadInitThunk [0x00007FFBC3C77344+20]
+	RtlUserThreadStart [0x00007FFBC5AA26B1+33]
+
+2023-09-24 15:09:10 - INFO - elapse time --oneDay() 2.71805739402771
+2023-09-24 15:09:11 - INFO - elapse time --acceptTerms() 1.2650902271270752
+2023-09-24 15:09:12 - INFO - elapse time --findZone() 1.207981824874878
+2023-09-24 15:09:23 - INFO - elapse time --findAllSeatUnchecked() 0.031914710998535156 len=139
+2023-09-24 15:09:23 - INFO - ----> current zone ('B1', '6800')
+2023-09-24 15:09:23 - INFO - -->AD-01-P*6800
+2023-09-24 15:09:23 - INFO - -->AD-02-P*6800
+2023-09-24 15:09:24 - INFO - -->AD-03-P*6800
+2023-09-24 15:09:24 - INFO - -->AD-04-P*6800
+2023-09-24 15:09:24 - INFO - elapse time --clickSeat() 1.367825984954834
+2023-09-24 15:09:28 - INFO - ------SUCCESS: MAIN LOOP TERMINATED------, TIME TAKEN: 16.671209812164307
+2023-09-24 15:10:51 - INFO - elapsed time --load+login 3.9152567386627197
+2023-09-24 15:10:52 - INFO - Attempt #1: Message: stale element reference: stale element not found
+  (Session info: chrome=116.0.5845.188)
+Stacktrace:
+	GetHandleVerifier [0x00007FF6F2E852A2+57122]
+	(No symbol) [0x00007FF6F2DFEA92]
+	(No symbol) [0x00007FF6F2CCE3AB]
+	(No symbol) [0x00007FF6F2CDABC3]
+	(No symbol) [0x00007FF6F2CD2719]
+	(No symbol) [0x00007FF6F2CD2823]
+	(No symbol) [0x00007FF6F2CD167A]
+	(No symbol) [0x00007FF6F2CD4063]
+	(No symbol) [0x00007FF6F2D3F214]
+	(No symbol) [0x00007FF6F2D26FDA]
+	(No symbol) [0x00007FF6F2D3EB82]
+	(No symbol) [0x00007FF6F2D26DB3]
+	(No symbol) [0x00007FF6F2CFD2B1]
+	(No symbol) [0x00007FF6F2CFE494]
+	GetHandleVerifier [0x00007FF6F312EF82+2849794]
+	GetHandleVerifier [0x00007FF6F3181D24+3189156]
+	GetHandleVerifier [0x00007FF6F317ACAF+3160367]
+	GetHandleVerifier [0x00007FF6F2F16D06+653702]
+	(No symbol) [0x00007FF6F2E0A208]
+	(No symbol) [0x00007FF6F2E062C4]
+	(No symbol) [0x00007FF6F2E063F6]
+	(No symbol) [0x00007FF6F2DF67A3]
+	BaseThreadInitThunk [0x00007FFBC3C77344+20]
+	RtlUserThreadStart [0x00007FFBC5AA26B1+33]
+
+2023-09-24 15:10:54 - INFO - elapse time --oneDay() 2.3563895225524902
+2023-09-24 15:10:55 - INFO - elapse time --acceptTerms() 1.7173855304718018
+2023-09-24 15:10:57 - INFO - elapse time --findZone() 1.6732778549194336
+2023-09-24 15:11:09 - INFO - elapse time --findAllSeatUnchecked() 0.05385589599609375 len=135
+2023-09-24 15:11:09 - INFO - ----> current zone ('B1', '6800')
+2023-09-24 15:11:09 - INFO - -->AD-05-P*6800
+2023-09-24 15:11:09 - INFO - -->AE-02-P*6800
+2023-09-24 15:11:09 - INFO - -->AE-03-P*6800
+2023-09-24 15:11:10 - INFO - -->AE-04-P*6800
+2023-09-24 15:11:10 - INFO - elapse time --clickSeat() 1.3749277591705322
+2023-09-24 15:11:14 - INFO - ------SUCCESS: MAIN LOOP TERMINATED------, TIME TAKEN: 18.661901235580444
+2023-09-24 15:13:21 - INFO - elapsed time --load+login 4.2164084911346436
+2023-09-24 15:13:22 - INFO - Attempt #1: Message: stale element reference: stale element not found
+  (Session info: chrome=116.0.5845.188)
+Stacktrace:
+	GetHandleVerifier [0x00007FF6F2E852A2+57122]
+	(No symbol) [0x00007FF6F2DFEA92]
+	(No symbol) [0x00007FF6F2CCE3AB]
+	(No symbol) [0x00007FF6F2CDABC3]
+	(No symbol) [0x00007FF6F2CD2719]
+	(No symbol) [0x00007FF6F2CD2823]
+	(No symbol) [0x00007FF6F2CD167A]
+	(No symbol) [0x00007FF6F2CD4063]
+	(No symbol) [0x00007FF6F2D3F214]
+	(No symbol) [0x00007FF6F2D26FDA]
+	(No symbol) [0x00007FF6F2D3EB82]
+	(No symbol) [0x00007FF6F2D26DB3]
+	(No symbol) [0x00007FF6F2CFD2B1]
+	(No symbol) [0x00007FF6F2CFE494]
+	GetHandleVerifier [0x00007FF6F312EF82+2849794]
+	GetHandleVerifier [0x00007FF6F3181D24+3189156]
+	GetHandleVerifier [0x00007FF6F317ACAF+3160367]
+	GetHandleVerifier [0x00007FF6F2F16D06+653702]
+	(No symbol) [0x00007FF6F2E0A208]
+	(No symbol) [0x00007FF6F2E062C4]
+	(No symbol) [0x00007FF6F2E063F6]
+	(No symbol) [0x00007FF6F2DF67A3]
+	BaseThreadInitThunk [0x00007FFBC3C77344+20]
+	RtlUserThreadStart [0x00007FFBC5AA26B1+33]
+
+2023-09-24 15:13:24 - INFO - elapse time --oneDay() 2.7001731395721436
+2023-09-24 15:13:25 - INFO - elapse time --acceptTerms() 1.5292212963104248
+2023-09-24 15:13:27 - INFO - elapse time --findZone() 1.528759241104126
+2023-09-24 15:13:35 - INFO - elapse time --findAllSeatUnchecked() 0.033910512924194336 len=135
+2023-09-24 15:13:35 - INFO - ----> current zone ('B1', '6800')
+2023-09-24 15:13:35 - INFO - -->AD-01-P*6800
+2023-09-24 15:13:36 - INFO - -->AD-02-P*6800
+2023-09-24 15:13:36 - INFO - -->AD-03-P*6800
+2023-09-24 15:13:36 - INFO - -->AD-04-P*6800
+2023-09-24 15:13:36 - INFO - elapse time --clickSeat() 1.2763018608093262
+2023-09-24 15:13:42 - INFO - ------SUCCESS: MAIN LOOP TERMINATED------, TIME TAKEN: 16.547313928604126
+2023-09-24 15:18:53 - INFO - elapsed time --load+login 3.900932550430298
+2023-09-24 15:18:54 - INFO - Attempt #1: Message: stale element reference: stale element not found
+  (Session info: chrome=116.0.5845.188)
+Stacktrace:
+	GetHandleVerifier [0x00007FF6F2E852A2+57122]
+	(No symbol) [0x00007FF6F2DFEA92]
+	(No symbol) [0x00007FF6F2CCE3AB]
+	(No symbol) [0x00007FF6F2CDABC3]
+	(No symbol) [0x00007FF6F2CD2719]
+	(No symbol) [0x00007FF6F2CD2823]
+	(No symbol) [0x00007FF6F2CD167A]
+	(No symbol) [0x00007FF6F2CD4063]
+	(No symbol) [0x00007FF6F2D3F214]
+	(No symbol) [0x00007FF6F2D26FDA]
+	(No symbol) [0x00007FF6F2D3EB82]
+	(No symbol) [0x00007FF6F2D26DB3]
+	(No symbol) [0x00007FF6F2CFD2B1]
+	(No symbol) [0x00007FF6F2CFE494]
+	GetHandleVerifier [0x00007FF6F312EF82+2849794]
+	GetHandleVerifier [0x00007FF6F3181D24+3189156]
+	GetHandleVerifier [0x00007FF6F317ACAF+3160367]
+	GetHandleVerifier [0x00007FF6F2F16D06+653702]
+	(No symbol) [0x00007FF6F2E0A208]
+	(No symbol) [0x00007FF6F2E062C4]
+	(No symbol) [0x00007FF6F2E063F6]
+	(No symbol) [0x00007FF6F2DF67A3]
+	BaseThreadInitThunk [0x00007FFBC3C77344+20]
+	RtlUserThreadStart [0x00007FFBC5AA26B1+33]
+
+2023-09-24 15:18:55 - INFO - elapse time --oneDay() 2.358046054840088
+2023-09-24 15:18:56 - INFO - elapse time --acceptTerms() 1.3182525634765625
+2023-09-24 15:18:58 - INFO - elapse time --findZone() 1.6889441013336182
+2023-09-24 15:19:09 - INFO - elapse time --findAllSeatUnchecked() 0.05086541175842285 len=143
+2023-09-24 15:19:09 - INFO - ----> current zone ('B1', '6800')
+2023-09-24 15:19:09 - INFO - -->AA-03-P*6800
+2023-09-24 15:19:09 - INFO - -->AB-01-P*6800
+2023-09-24 15:19:10 - INFO - -->AB-02-P*6800
+2023-09-24 15:19:10 - INFO - -->AB-03-P*6800
+2023-09-24 15:19:10 - INFO - elapse time --clickSeat() 1.1942594051361084
+2023-09-24 15:19:14 - INFO - ------SUCCESS: MAIN LOOP TERMINATED------, TIME TAKEN: 18.168954372406006
+2023-09-24 15:20:19 - INFO - elapsed time --load+login 4.125434160232544
+2023-09-24 15:20:20 - INFO - Attempt #1: Message: stale element reference: stale element not found
+  (Session info: chrome=116.0.5845.188)
+Stacktrace:
+	GetHandleVerifier [0x00007FF6F2E852A2+57122]
+	(No symbol) [0x00007FF6F2DFEA92]
+	(No symbol) [0x00007FF6F2CCE3AB]
+	(No symbol) [0x00007FF6F2CDABC3]
+	(No symbol) [0x00007FF6F2CD2719]
+	(No symbol) [0x00007FF6F2CD2823]
+	(No symbol) [0x00007FF6F2CD167A]
+	(No symbol) [0x00007FF6F2CD4063]
+	(No symbol) [0x00007FF6F2D3F214]
+	(No symbol) [0x00007FF6F2D26FDA]
+	(No symbol) [0x00007FF6F2D3EB82]
+	(No symbol) [0x00007FF6F2D26DB3]
+	(No symbol) [0x00007FF6F2CFD2B1]
+	(No symbol) [0x00007FF6F2CFE494]
+	GetHandleVerifier [0x00007FF6F312EF82+2849794]
+	GetHandleVerifier [0x00007FF6F3181D24+3189156]
+	GetHandleVerifier [0x00007FF6F317ACAF+3160367]
+	GetHandleVerifier [0x00007FF6F2F16D06+653702]
+	(No symbol) [0x00007FF6F2E0A208]
+	(No symbol) [0x00007FF6F2E062C4]
+	(No symbol) [0x00007FF6F2E063F6]
+	(No symbol) [0x00007FF6F2DF67A3]
+	BaseThreadInitThunk [0x00007FFBC3C77344+20]
+	RtlUserThreadStart [0x00007FFBC5AA26B1+33]
+
+2023-09-24 15:20:22 - INFO - elapse time --oneDay() 2.4994561672210693
+2023-09-24 15:20:23 - INFO - elapse time --acceptTerms() 1.361872911453247
+2023-09-24 15:20:24 - INFO - elapse time --findZone() 1.2814605236053467
+2023-09-24 15:20:41 - INFO - elapse time --findAllSeatUnchecked() 0.029919147491455078 len=139
+2023-09-24 15:20:41 - INFO - ----> current zone ('B1', '6800')
+2023-09-24 15:20:42 - INFO - -->AD-01-P*6800
+2023-09-24 15:20:42 - INFO - -->AD-02-P*6800
+2023-09-24 15:20:42 - INFO - -->AD-03-P*6800
+2023-09-24 15:20:43 - INFO - -->AD-04-P*6800
+2023-09-24 15:20:43 - INFO - elapse time --clickSeat() 1.6126620769500732
+2023-09-24 15:20:47 - INFO - ------SUCCESS: MAIN LOOP TERMINATED------, TIME TAKEN: 23.894618034362793
