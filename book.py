@@ -277,28 +277,12 @@ def findAllSeatUnchecked(price, notAvailable):
     
     start = time.time()
     seats = driver.find_elements(By.CSS_SELECTOR,f'.seatuncheck[data-seat*="{price}"]')
-    end = time.time()
-    print("---->> <<----elapsed time --find all .seatuncheck", end - start)
     
-    print([i.get_attribute("data-seat") for i in seats][:20])
-    na = ["AE-05-P*6800","AE-06-P*6800","AE-07-P*6800","AE-08-P*6800"]
-    print("\n\n")
-    startx = time.time() 
-    seatx = [x for x in seats if x.get_attribute("data-seat") not in na]
-    endx = time.time() 
-    print([i.get_attribute("data-seat") for i in seatx][:20])
-    print("elapsed time --remove fuckedup --list comprehension", endx-startx)
-    print("\n\n")
-    starta = time.time() 
-    seatn = remove_elements_method2(seats,na)
-    enda = time.time() 
-    print([i.get_attribute("data-seat") for i in seatn][:20])
-    print("elapsed time --remove fuckedup --early stop", enda-starta)
-    print("\n\n")
+    end = time.time()
 
     logging.info(f"elapse time --findAllSeatUnchecked() {end-start} len={len(seats)}")
     
-    return seats
+    return remove_elements_method2(seats,notAvailable)
 
 
 def findConsecseats(limit,seats):
