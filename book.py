@@ -15,7 +15,7 @@ options = Options()
 options.add_experimental_option("detach", True)
 options.add_argument("--remote-allow-origins=*")
 options.add_argument("--start-maximized")
-driver =webdriver.Edge("chromedriver.exe",options = options)
+driver =webdriver.Chrome("chromedriver.exe",options = options)
 wait = WebDriverWait(driver, timeout=5, poll_frequency=0.5)
 waitQueue = WebDriverWait(driver,timeout = 10, poll_frequency=1)
 
@@ -27,7 +27,7 @@ class Seat:
         self.price = price
     def show(self):
         print(self.price, self.seatNo, self.zone)
-        
+               
 
 
 def loadAndLogin(URL):
@@ -358,7 +358,6 @@ def completeBooking(nameList):
             time.sleep(0.5)
             return True
     except (EX.ElementClickInterceptedException, EX.UnexpectedAlertPresentException):
-        driver.switch_to().alert().accept()
         driver.refresh()
         return False
         

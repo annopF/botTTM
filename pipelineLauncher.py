@@ -58,7 +58,6 @@ else:
     
 
 success = False #success flag change to TRUE if the seats are clicked successfully, default=False
-
 Mstart = time.time()
 for zone in config.zone_list: #loop through zones in zone list
     book.findZone(zone)
