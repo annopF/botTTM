@@ -8,6 +8,7 @@ import time
 import numpy as np
 import logging
 from logging_config import configure_logging
+from random import randint
 
 configure_logging()
 
@@ -16,8 +17,8 @@ options.add_experimental_option("detach", True)
 options.add_argument("--remote-allow-origins=*")
 options.add_argument("--start-maximized")
 driver =webdriver.Chrome("chromedriver.exe",options = options)
-wait = WebDriverWait(driver, timeout=5, poll_frequency=0.5)
-waitQueue = WebDriverWait(driver,timeout = 10, poll_frequency=1)
+wait = WebDriverWait(driver, timeout=2, poll_frequency=0.1)
+waitQuick = WebDriverWait(driver,timeout = 0.5, poll_frequency=0.1)
 
 class Seat:
     def __init__(self, element, zone, seat_number, price):
@@ -29,6 +30,8 @@ class Seat:
         print(self.price, self.seatNo, self.zone)
                
 
+def killYourSelf():
+    driver.quit()
 
 def loadAndLogin(URL):
     
@@ -47,7 +50,6 @@ def loadAndLogin(URL):
    
     #login end
     end = time.time()
-    print("---->> <<----elapsed time --load+login ", end - start)
     logging.info(f"elapsed time --load+login {end-start}")
 
 
@@ -116,10 +118,8 @@ def click_btn_red_DIRECT():
         except (EX.StaleElementReferenceException, EX.ElementClickInterceptedException, EX.TimeoutException, EX.ElementNotInteractableException) as e:
             # Handle the ElementClickInterceptedException
             current_retry += 1
-            print(f"Attempt #{current_retry} - {e}")
             logging.info(f"Attempt #{current_retry}: {e}")
     end = time.time()
-    print("---->> <<----elapsed time --oneDay ", end-start, current_retry)
     logging.info(f"elapse time --oneDay() {end-start}")
 
 #DESC: click ซื้อบัตร but when the concert has multiple rounds. This function is used when the concert has no queue
@@ -144,11 +144,9 @@ def click_btn_red_INDIRECT():
         except (EX.StaleElementReferenceException, EX.ElementClickInterceptedException, EX.TimeoutException, EX.ElementNotInteractableException) as e:
             # Handle the ElementClickInterceptedException
             current_retry += 1
-            print(f"Attempt #{current_retry} - {e}")
             logging.info(f"Attempt #{current_retry}: {e}")
 
     end = time.time()
-    print("---->> <<----elapsed time --click btn red ", end-start, current_retry)
     logging.info(f"elapse time --click_btn_red() {end-start}")
 
 
@@ -178,11 +176,9 @@ def moreDay(day):
         except (EX.StaleElementReferenceException, EX.ElementClickInterceptedException, EX.TimeoutException, EX.ElementNotInteractableException) as e:
             # Handle the ElementClickInterceptedException
             current_retry += 1
-            print(f"Attempt #{current_retry} - {e}") 
             logging.info(f"Attemp#{current_retry}: {e}")
 
     end = time.time()
-    print("---->> <<----elapsed time --moreDay ", end - start, current_retry)
     logging.info(f"elapse time --moreDay() {end-start}")
 
 
@@ -211,11 +207,9 @@ def acceptTerms():
         except (EX.StaleElementReferenceException, EX.ElementClickInterceptedException, EX.TimeoutException, EX.ElementNotInteractableException) as e:
             # Handle the ElementClickInterceptedException
             current_retry += 1
-            print(f"Attempt #{current_retry} - {e}")
             logging.info(f"Attempt #{current_retry}: {e}")
 
     end = time.time()
-    print("---->> <<----elapsed time --accept terms ", end - start)
     logging.info(f"elapse time --acceptTerms() {end-start}")
 
 
@@ -224,10 +218,9 @@ def clickDropdown(day):
     txt = "Sun 02"
 
     #driver.find_element(By.XPATH,f"//select[@id='rdId']/option[contains(text(), '{txt}')]").click()
-    driver.find_element(By.CSS_SELECTOR,f"#rdId > option:nth-child({day+1})").click()
+    driver.find_element(By.CSS_SELECTOR,f"#rdId > option:nth-child({day})").click()
 
     end = time.time()
-    print("---->> <<----elapsed time --click dropdown ", end - start)
     logging.info(f"elapse time --clickDropdown() {end-start}")
 
 def findZone(zone):
@@ -253,11 +246,9 @@ def findZone(zone):
         except (EX.StaleElementReferenceException, EX.ElementClickInterceptedException, EX.TimeoutException, EX.ElementNotInteractableException) as e:
             # Handle the ElementClickInterceptedException
             current_retry += 1
-            print(f"Attempt #{current_retry} - {e}")
             logging.info(f"Attempt #{current_retry}: {e}")
 
     end = time.time()
-    print("---->> <<----elapsed time --findZone() ", end - start)
     logging.info(f"elapse time --findZone() {end-start}")
 
 def findAllSeatUnchecked(price, notAvailable):
@@ -303,7 +294,6 @@ def findConsecseats(limit,seats):
 
 
     end = time.time()
-    print("---->> <<----elapsed time --find consecutive seats", end - start)
     logging.info(f"elapse time --findConsecseats() {end-start}")
     return temp
 
@@ -312,27 +302,70 @@ def noSeatHandler():
     driver.back()
     driver.refresh()
 
-def clickSeat(limit,seats):
-    print("--len seat",len(seats))
+def complete(queue):
+        print("CLICK BOOK NOW INNER FUNC")
+        currentURL = driver.current_url
+            
+        driver.find_element(By.CSS_SELECTOR,"#booknow").click()
+        try:
+            newURL = driver.current_url
+
+            if newURL == currentURL:
+                print("nefw driver equal")
+                driver.refresh()
+                print("click book now intercepted by alert v")
+                return(0)
+        except EX.UnexpectedAlertPresentException:
+            logging.info("click book now intercepted by alert")
+            return(0)
+        if "enroll_fixed" or "payment" in newURL:
+            if queue.empty():
+                queue.put("fuck yeah!")
+                
+            else:
+                print("Killing this process immediately...")
+                driver.quit()
+                exit(0)
+        return(1)
+
+def clickSeat(limit,seats,queue):
     
-    print("start clickSeat")
+    temp = []
+    tempAll = []
     start = time.time()
+    p = None
     for i in range(limit):
         try:
             seats[i].click()
             p = seats[i].get_attribute("data-seat")
-            print("-->",p)
+            tempAll.append(p)
             logging.info(f"-->{p}")
-            time.sleep(0.1)
-        except EX.ElementClickInterceptedException:
-            driver.refresh()
-            print(f"encountered seat already taken popup, --refreshing in place... problematic seat:{p}")
-            logging.info("[CLICK FAILED] encountered seat already taken popup, --refreshing in place...")
-            return(p)
-    end = time.time()
-    print("---->> <<----elapsed time --click seat", end - start)
-    logging.info(f"elapse time --clickSeat() {end-start}")
-    return(True)
+            time.sleep(0.05)
+            if i+1 == len(seats):
+                try:
+                    waitQuick.until(EC.element_to_be_clickable((By.CSS_SELECTOR,"body > div.fancybox-overlay.fancybox-overlay-fixed > div > div > a"))).click()
+                    logging.info(f"!! last seat already taken {p}")
+                    temp.append(p)
+                except (EX.NoSuchElementException, EX.TimeoutException):
+                    pass
+        except (EX.ElementClickInterceptedException, EX.UnexpectedAlertPresentException):
+            waitQuick.until(EC.element_to_be_clickable((By.CSS_SELECTOR,"body > div.fancybox-overlay.fancybox-overlay-fixed > div > div > a"))).click()
+            logging.info(f"!! seat already taken {p}")
+
+            temp.append(p)
+            print("appendeed ", temp)
+
+    if len(temp) != 0:  
+        logging.info(f"[CLICK FAILED] encountered seat already taken popup {temp} ")
+        driver.refresh()
+        return(temp)
+    if complete(queue):
+        return(True)
+    logging.info(f"[CLICK FAILED] ALERT is present {tempAll} ")
+
+    return(tempAll)
+    #logging.info(f"elapse time --clickSeat() {end-start}, len seat={len(seats)}")
+    
 
 def fillTicName(nameList):
     for i in range(len(nameList)):
@@ -340,29 +373,20 @@ def fillTicName(nameList):
     driver.find_element(By.CSS_SELECTOR,"#btn_regnow").click()
 
 
-def completeBooking(nameList):
-    currentURL = driver.current_url
-    print("CLICK BOOK NOW")
-    driver.find_element(By.CSS_SELECTOR,"#booknow").click()
-    try:
-        newURL = driver.current_url
-        print(newURL==currentURL)
-        if newURL != currentURL:
-            print("URL CHANGED")
-            if "enroll_fixed" in newURL:
-                fillTicName(nameList)
-            wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR,"#btn_pickup"))).click()
-            wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR,"#btn_mobile"))).click()
-            wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR,"#btn_truemoney"))).click()
-            wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR,"#truemoney_contact"))).send_keys("0842564963")
-            time.sleep(0.5)
-            return True
-    except (EX.ElementClickInterceptedException, EX.UnexpectedAlertPresentException):
-        driver.refresh()
-        return False
-        
+   
+
+def afterBook(nameList):
+    newURL = driver.current_url      
     
-
-
+    if "enroll_fixed" in newURL:
+        fillTicName(nameList)
+    wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR,"#btn_pickup"))).click()
+    wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR,"#btn_mobile"))).click()
+    wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR,"#btn_truemoney"))).click()
+    wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR,"#truemoney_contact"))).send_keys("0842564963")
+    time.sleep(0.5)
+    logging.info("fill name completed")
+    return True
+  
     
 
