@@ -9,6 +9,7 @@ import numpy as np
 import logging
 from logging_config import configure_logging
 from random import randint
+from os import getpid
 
 configure_logging()
 
@@ -19,7 +20,7 @@ options.add_argument("--start-maximized")
 driver =webdriver.Chrome("chromedriver.exe",options = options)
 wait = WebDriverWait(driver, timeout=2, poll_frequency=0.1)
 waitQuick = WebDriverWait(driver,timeout = 0.5, poll_frequency=0.1)
-
+processID = getpid()
 class Seat:
     def __init__(self, element, zone, seat_number, price):
         self.element = element
@@ -50,8 +51,8 @@ def loadAndLogin(URL):
    
     #login end
     end = time.time()
-    logging.info(f"elapsed time --load+login {end-start}")
-
+    logging.info(f"@process {processID}, elapsed time --load+login {end-start}")
+    print(f"@process {processID} SUCCESS: --load+login() elapsed time: {end-start}")
 
 #DESC: monitor for file change by comparing hash of files
 #ARGS: accept path to file
@@ -95,7 +96,6 @@ def waitInQueue(path):
 #ARGS: None
 #RETURN: None
 def click_btn_red_DIRECT():
-    print("one day <->")
 
     start = time.time()
     attrix = "btn-red"
@@ -118,9 +118,11 @@ def click_btn_red_DIRECT():
         except (EX.StaleElementReferenceException, EX.ElementClickInterceptedException, EX.TimeoutException, EX.ElementNotInteractableException) as e:
             # Handle the ElementClickInterceptedException
             current_retry += 1
-            logging.info(f"Attempt #{current_retry}: {e}")
+            logging.info(f"@process {processID}, Attempt #{current_retry}: {e}")
     end = time.time()
-    logging.info(f"elapse time --oneDay() {end-start}")
+    logging.info(f"@process {processID}, elapse time --oneDay() {end-start}")
+    print(f"@process {processID} SUCCESS: --oneDay() elapsed time: {end-start}")
+
 
 #DESC: click ซื้อบัตร but when the concert has multiple rounds. This function is used when the concert has no queue
 #ARGS: accept path to file
@@ -144,10 +146,10 @@ def click_btn_red_INDIRECT():
         except (EX.StaleElementReferenceException, EX.ElementClickInterceptedException, EX.TimeoutException, EX.ElementNotInteractableException) as e:
             # Handle the ElementClickInterceptedException
             current_retry += 1
-            logging.info(f"Attempt #{current_retry}: {e}")
+            logging.info(f"@process {processID}, Attempt #{current_retry}: {e}")
 
     end = time.time()
-    logging.info(f"elapse time --click_btn_red() {end-start}")
+    logging.info(f"@process {processID}, elapse time --click_btn_red() {end-start}")
 
 
 def moreDay(day):
@@ -179,7 +181,8 @@ def moreDay(day):
             logging.info(f"Attemp#{current_retry}: {e}")
 
     end = time.time()
-    logging.info(f"elapse time --moreDay() {end-start}")
+    logging.info(f"@process {processID}, elapse time --moreDay() {end-start}")
+    print(f"@process {processID} SUCCESS: --moreDay() elapsed time: {end-start}")
 
 
 #click accept term and condition
@@ -207,10 +210,11 @@ def acceptTerms():
         except (EX.StaleElementReferenceException, EX.ElementClickInterceptedException, EX.TimeoutException, EX.ElementNotInteractableException) as e:
             # Handle the ElementClickInterceptedException
             current_retry += 1
-            logging.info(f"Attempt #{current_retry}: {e}")
+            logging.info(f"@process {processID}, Attempt #{current_retry}: {e}")
 
     end = time.time()
-    logging.info(f"elapse time --acceptTerms() {end-start}")
+    logging.info(f"@process {processID}, elapse time --acceptTerms() {end-start}")
+    print(f"@process {processID} SUCCESS: --acceptTerm() elapsed time: {end-start}")
 
 
 def clickDropdown(day):
@@ -221,7 +225,9 @@ def clickDropdown(day):
     driver.find_element(By.CSS_SELECTOR,f"#rdId > option:nth-child({day})").click()
 
     end = time.time()
-    logging.info(f"elapse time --clickDropdown() {end-start}")
+    logging.info(f"@process {processID}, elapse time --clickDropdown() {end-start}")
+    print(f"@process {processID} SUCCESS: --clickDropdown() elapsed time: {end-start}")
+
 
 def findZone(zone):
     start = time.time()
@@ -246,10 +252,11 @@ def findZone(zone):
         except (EX.StaleElementReferenceException, EX.ElementClickInterceptedException, EX.TimeoutException, EX.ElementNotInteractableException) as e:
             # Handle the ElementClickInterceptedException
             current_retry += 1
-            logging.info(f"Attempt #{current_retry}: {e}")
+            logging.info(f"@process {processID}, Attempt #{current_retry}: {e}")
 
     end = time.time()
-    logging.info(f"elapse time --findZone() {end-start}")
+    logging.info(f"@process {processID}, elapse time --findZone() {end-start}")
+    print(f"@process {processID} SUCCESS: --findZone() elapsed time: {end-start}")
 
 def findAllSeatUnchecked(price, notAvailable):
     def remove_elements_method2(A, toRemove):
@@ -271,11 +278,15 @@ def findAllSeatUnchecked(price, notAvailable):
     
     end = time.time()
 
-    logging.info(f"elapse time --findAllSeatUnchecked() {end-start} len={len(seats)}")
-    
+    logging.info(f"@process {processID}, elapse time --findAllSeatUnchecked() {end-start} len={len(seats)}")
+    print(f"@process {processID} SUCCESS: --findAllSeatUnchecked() elapsed time: {end-start}")
+
     return remove_elements_method2(seats,notAvailable)
 
+def segmentSeat(seatList, segment, lookAt):
+    return np.array_split(seatList, segment)[lookAt]
 
+    
 def findConsecseats(limit,seats):
     start = time.time()
     ##working for real tested 
@@ -294,16 +305,17 @@ def findConsecseats(limit,seats):
 
 
     end = time.time()
-    logging.info(f"elapse time --findConsecseats() {end-start}")
+    logging.info(f"elapse time --findConsecseats() {end-start}, @process {processID}")
+    print(f"@process {processID} SUCCESS: --findConsecseats() elapsed time: {end-start}")
+
     return temp
 
 def noSeatHandler():
-    logging.info("[NO SEAT] No seat or consec seat found, Moving to next zone")
+    logging.info(f"@process {processID}, [NO SEAT] No seat or consec seat found, Moving to next zone")
     driver.back()
     driver.refresh()
 
 def complete(queue):
-        print("CLICK BOOK NOW INNER FUNC")
         currentURL = driver.current_url
             
         driver.find_element(By.CSS_SELECTOR,"#booknow").click()
@@ -316,14 +328,21 @@ def complete(queue):
                 print("click book now intercepted by alert v")
                 return(0)
         except EX.UnexpectedAlertPresentException:
-            logging.info("click book now intercepted by alert")
+            logging.info(f"@process {processID}, click book now intercepted by alert")
+            print(f"@process {processID} FAIL: RECOVERING...")
+
             return(0)
         if "enroll_fixed" or "payment" in newURL:
             if queue.empty():
                 queue.put("fuck yeah!")
+                logging.info(f"@process {processID}, This process is the Winner")
+                print(f"@process {processID} SUCCESS: This process is the winner")
+
                 
             else:
-                print("Killing this process immediately...")
+                logging.info(f"@process {processID}, Killing this process immediately...")
+                print(f"@process {processID} TERMINATED NOW")
+
                 driver.quit()
                 exit(0)
         return(1)
@@ -339,29 +358,40 @@ def clickSeat(limit,seats,queue):
             seats[i].click()
             p = seats[i].get_attribute("data-seat")
             tempAll.append(p)
-            logging.info(f"-->{p}")
+            logging.info(f"@process {processID}, -->{p}")
             time.sleep(0.05)
             if i+1 == len(seats):
                 try:
                     waitQuick.until(EC.element_to_be_clickable((By.CSS_SELECTOR,"body > div.fancybox-overlay.fancybox-overlay-fixed > div > div > a"))).click()
-                    logging.info(f"!! last seat already taken {p}")
+                    logging.info(f"@process {processID}, !! last seat already taken {p}")
+                    print(f"@process {processID} FAIL: RECOVERING...")
+
                     temp.append(p)
                 except (EX.NoSuchElementException, EX.TimeoutException):
                     pass
         except (EX.ElementClickInterceptedException, EX.UnexpectedAlertPresentException):
             waitQuick.until(EC.element_to_be_clickable((By.CSS_SELECTOR,"body > div.fancybox-overlay.fancybox-overlay-fixed > div > div > a"))).click()
-            logging.info(f"!! seat already taken {p}")
+            logging.info(f"@process {processID}, !! seat already taken {p}")
+            print(f"@process {processID} FAIL: RECOVERING...")
+
 
             temp.append(p)
             print("appendeed ", temp)
 
-    if len(temp) != 0:  
-        logging.info(f"[CLICK FAILED] encountered seat already taken popup {temp} ")
+    if len(temp) != 0:
+        logging.info(f"@process {processID}, [CLICK FAILED] encountered seat already taken popup {temp} ")
+        print(f"@process {processID} FAIL: RECOVERING...")
+
         driver.refresh()
         return(temp)
     if complete(queue):
+        end = time.time()  
+        logging.info(f"@process {processID}, elapsed time --clickSeat() {end-start} ")
+        print(f"@process {processID} SUCCESS: --clickSeat() {end-start}")
+
         return(True)
-    logging.info(f"[CLICK FAILED] ALERT is present {tempAll} ")
+    logging.info(f"@process {processID}, [CLICK FAILED] ALERT is present {tempAll} ")
+    print(f"@process {processID} FAIL: RECOVERING...")
 
     return(tempAll)
     #logging.info(f"elapse time --clickSeat() {end-start}, len seat={len(seats)}")
@@ -385,7 +415,7 @@ def afterBook(nameList):
     wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR,"#btn_truemoney"))).click()
     wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR,"#truemoney_contact"))).send_keys("0842564963")
     time.sleep(0.5)
-    logging.info("fill name completed")
+    logging.info(f"@process {processID}, fill name completed")
     return True
   
     

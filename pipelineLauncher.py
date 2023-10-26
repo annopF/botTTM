@@ -5,14 +5,13 @@ import logging
 from logging_config import configure_logging
 from os import getpid
 
-def startS_Booker(queue, zone):
+def startS_Booker(queue, zone, segIdx):
     configure_logging()
     success = False
     json_file_path = "F:/Work Folder/ticSeleBot/seatConfig.json"
     config = configData.bookingDetail(json_file_path)
     config.initialize()
     config.showConfig()
-    config.showTargetTime()
     #*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*#
     
     def queueAndWaitHandler():
@@ -21,11 +20,11 @@ def startS_Booker(queue, zone):
         startWait = config.start_time - 10 - current_time """
     
         book.loadAndLogin(config.url)
-        print("----------> The program is still running (รอเวลารับบัตรคิว {}) <----------\n\n".format(config.queueTime))
+        print("----------> The program is still running (wait until queue time begin at {}) <----------\n\n".format(config.queueTime))
         config.countdown(config.queue_time)
         
         book.click_btn_red_DIRECT()
-        print("----------> รับคิวเรียบร้อย รอเวลาเปิดขายบัตร at {}".format(config.startTime))
+        print("----------> queue has been obtained, wait until sales begin at {}".format(config.startTime))
         config.countdown(config.start_time)
 
         print("----------> YOU ARE IN QUEUE!, wait until your turn")
@@ -65,29 +64,30 @@ def startS_Booker(queue, zone):
     while not success: #this while loop keep looping over a zone in case the click fucntion got intercepted by "this seat has been taken" popup
         seats= book.findAllSeatUnchecked(config.price, fuckedUpSeat)  
         pid = getpid()
-        logging.info(f"----> current zone {zone}, {config.price}, {pid}")
+        logging.info(f"@process {pid} ----> current zone {zone}, {config.price}")
 
         if len(seats) < config.limit:
-            logging.info(f"NO seat found, KILLING this process immediately {pid}")
+            logging.info(f"@process {pid} NO seat found, KILLING this process immediately")
             book.driver.quit()
             break 
         
         if config.limit == 1 or (config.limit > 1 and config.mode == "any"):
-            seatStage = book.clickSeat(config.limit, seats, queue)
             
-            logging.info(f"SEAT stage: {seatStage}, {pid}")
+            seatStage = book.clickSeat(config.limit, book.segmentSeat(seats,config.limit,segIdx), queue) #CHANGE on Thu 26 OCT
+            
+            logging.info(f"@process {pid} SEAT stage: {seatStage}")
 
             if seatStage == True:
                 success = True
-                logging.info(f"success stage: {success}, {pid}")
+                logging.info(f"@process {pid} success stage: {success}")
                 book.afterBook(config.name_list)
                 
 
                 break
             else:
-                logging.info(f"problematic seat: {seatStage}, {pid}")
+                logging.info(f"@process {pid} problematic seat: {seatStage}")
                 fuckedUpSeat.extend(seatStage)
-                logging.info(f"fuckedUpSeat: {fuckedUpSeat}, {pid}")
+                logging.info(f"@process {pid} fuckedUpSeat: {fuckedUpSeat}")
 
             
         elif config.limit > 1 and config.mode == "close":
@@ -95,17 +95,17 @@ def startS_Booker(queue, zone):
             if len(consecBlock) >= config.limit:
                 seatStage = book.clickSeat(config.limit, consecBlock, queue)
                 print("X ",seatStage)
-                logging.info(f"SEAT stage: {seatStage}, {pid}")
+                logging.info(f"@process {pid} SEAT stage: {seatStage}")
                 if seatStage == True: 
                     success = True
                     book.afterBook(config.name_list)
 
                     break
                 else:
-                    logging.info(f"problematic seat: {seatStage}, {pid}")
+                    logging.info(f"@process {pid} problematic seat: {seatStage}")
 
                     fuckedUpSeat.extend(seatStage)
-                    logging.info(f"fuckedUpSeat: {fuckedUpSeat}, {pid}")
+                    logging.info(f"@process {pid} fuckedUpSeat: {fuckedUpSeat}")
                     print (success)
             else:
                 pass
@@ -114,9 +114,11 @@ def startS_Booker(queue, zone):
     Mend = time.time()
 
     if success:
-        logging.info(f"------SUCCESS: MAIN LOOP TERMINATED------, TIME TAKEN: {Mend-Mstart}, {pid}")
+        logging.info(f"@process {pid} ------SUCCESS: MAIN LOOP TERMINATED------, TIME TAKEN: {Mend-Mstart}")
+        print(f"@process {pid} SUCCESS: BOOKING HAS COMPLETED TIME TAKEN: {Mend-Mstart} ")
+
     else:
-        logging.info(f"****************** BOOKING WAS UNSUCCESSFUL ******************. {pid}")
-    
+        logging.info(f"@process {pid} ****************** BOOKING WAS UNSUCCESSFUL ******************.")
+
 
 
