@@ -5,7 +5,7 @@ import logging
 from logging_config import configure_logging
 from os import getpid
 
-def startS_Booker(queue, zone, segIdx):
+def startS_Booker(queue, zone, segIdx,segment):
     configure_logging()
     success = False
     json_file_path = "F:/Work Folder/ticSeleBot/seatConfig.json"
@@ -73,7 +73,7 @@ def startS_Booker(queue, zone, segIdx):
         
         if config.limit == 1 or (config.limit > 1 and config.mode == "any"):
             
-            seatStage = book.clickSeat(config.limit, book.segmentSeat(seats,config.limit,segIdx), queue) #CHANGE on Thu 26 OCT
+            seatStage = book.clickSeat(config.limit, book.segmentSeat(seats,config.limit,zone,segIdx,segment), queue) #CHANGE on Thu 26 OCT
             
             logging.info(f"@process {pid} SEAT stage: {seatStage}")
 

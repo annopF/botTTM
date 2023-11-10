@@ -60,15 +60,15 @@ class bookingDetail():
         print("config updated")
 
     def showConfig(self):
-        table = [["has queue", "is oneday", "chosen day","zone list","price","number of ticket","mode","name list"], 
-                 [self.queue, self.oneDay, self.day, self.zone_list, self.ticketPrice, self.limit, self.mode, self.name_list]]
+        table = [["has queue", "is oneday", "chosen day","zone list","price","number of ticket","mode","name list","queue time", "sales begin"], 
+                 [self.queue, self.oneDay, self.day, self.zone_list, self.ticketPrice, self.limit, self.mode, self.name_list, self.queueTime, self.startTime]]
         print(tbl.tabulate(table, headers="firstrow", tablefmt="fancy_grid"))
     def showTargetTime(self):
         if self.queue:
-            tableQueue = [["เวลารับบัตรคิว","เวลาเปิดขายบัตร"],[self.queueTime, self.startTime]]
+            tableQueue = [["queue time","sales begin time"],[self.queueTime, self.startTime]]
             print(tbl.tabulate(tableQueue, headers="firstrow", tablefmt="fancy_grid"))
         else:
-            tableNoQueue = [["เวลารับบัตรคิว","เวลาเปิดขายบัตร"],["N/A", self.startTime]]
+            tableNoQueue = [["queue time","sales begin time"],["N/A", self.startTime]]
             print(tbl.tabulate(tableNoQueue, headers="firstrow", tablefmt="fancy_grid"))
 
     def countdown(self,target):
@@ -88,4 +88,6 @@ class bookingDetail():
             time.sleep(1)
 
         return()
+    def makeDup(zoneList):
+        return [zoneList + zoneList]
 ################################ CONFIG DATA FROM JSON FILE ################################
