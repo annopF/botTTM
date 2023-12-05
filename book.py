@@ -43,21 +43,28 @@ def killYourSelf():
 
 def loadAndLogin(URL):
     #wait = WebDriverWait(driver, timeout=2, poll_frequency=0.5, ignored_exceptions=[EX.StaleElementReferenceException, EX.ElementNotSelectableException, EX.ElementClickInterceptedException])
-
+    success = False
     #go to website
     start  = time.time()
 
     driver.get(URL)
     wait.until(EC.url_matches(URL))
     #login start
-    wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR,"body > div.main > header > div.container > div > div.mh-col.col-12.col-xl > div > button"))).click()
-    logging.info(f"@process {processID} login has started -xx")
+    while not success:
+        wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR,"body > div.main > header > div.container > div > div.mh-col.col-12.col-xl > div > button"))).click()
+        logging.info(f"@process {processID} login has started -xx")
 
-    waitLong.until(EC.visibility_of_element_located((By.CSS_SELECTOR,"#frm-signin > div.row-form.box-input > div > div:nth-child(1) > input"))).send_keys("peeannop28@outlook.com")
-    waitLong.until(EC.visibility_of_element_located((By.CSS_SELECTOR,"#frm-signin > div.row-form.box-input > div > div.box-input-item.box-view-password > div > input"))).send_keys("nop2000thai")
-    waitLong.until(EC.visibility_of_element_located((By.CSS_SELECTOR,"#frm-signin > div:nth-child(3) > div > button"))).click()
-    time.sleep(5)
-    #login end
+        waitLong.until(EC.visibility_of_element_located((By.CSS_SELECTOR,"#frm-signin > div.row-form.box-input > div > div:nth-child(1) > input"))).send_keys("peeannop28@outlook.com")
+        waitLong.until(EC.visibility_of_element_located((By.CSS_SELECTOR,"#frm-signin > div.row-form.box-input > div > div.box-input-item.box-view-password > div > input"))).send_keys("nop2000thai")
+        waitLong.until(EC.visibility_of_element_located((By.CSS_SELECTOR,"#frm-signin > div:nth-child(3) > div > button"))).click()
+        #login end
+        try:
+            wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR,"body > div.main > header > div.container > div > div.mh-col.col-12.col-xl > div > div.box-member.box-dropdown.item.d-none.d-lg-inline-block > button")))
+        except (EX.TimeoutException):
+            success = False
+        finally:
+            success = True
+    print("success state: ", success)
     end = time.time()
     logging.info(f"@process {processID}, elapsed time --load+login {end-start}")
     print(f"@process {processID} SUCCESS: --load+login() elapsed time: {end-start}")
@@ -128,6 +135,7 @@ def click_btn_red_DIRECT():
 
         except (EX.StaleElementReferenceException, EX.ElementClickInterceptedException, EX.TimeoutException, EX.ElementNotInteractableException) as e:
             # Handle the ElementClickInterceptedException
+            driver.refresh()
             current_retry += 1
             logging.info(f"@process {processID}, click_btn_red_DIRECT(), Attempt #{current_retry}: {e}")
     end = time.time()
@@ -156,6 +164,7 @@ def click_btn_red_INDIRECT():
             break
         except (EX.StaleElementReferenceException, EX.ElementClickInterceptedException, EX.TimeoutException, EX.ElementNotInteractableException) as e:
             # Handle the ElementClickInterceptedException
+            driver.refresh()
             current_retry += 1
             logging.info(f"@process {processID}, click_btn_red_INDIRECT() Attempt #{current_retry}: {e}")
 
