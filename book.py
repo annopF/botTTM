@@ -1,28 +1,26 @@
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.common import exceptions as EX
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver import DesiredCapabilities as dsc
 from selenium.webdriver.common.by import By
-import selenium.webdriver.support.expected_conditions as EC
-import selenium.common.exceptions as EX
 from  selenium.webdriver.support.wait import WebDriverWait
 import time
+import json
 import numpy as np
 import logging
 from logging_config import configure_logging
 from os import getpid
-from fake_useragent import UserAgent
 configure_logging()
-
 options = Options()
-ua = UserAgent()
-user_agent = ua.random
+service = Service(executable_path="chromedriver.exe" )
 options.add_experimental_option("detach", True)
 options.add_argument("--remote-allow-origins=*")
-#options.add_argument("--headless=new")
-#options.add_argument(f'--user-agent={user_agent}')
-
-#options.add_argument("--blink-settings=imagesEnabled=false")
 options.add_argument("--start-maximized")
-driver =webdriver.Chrome("chromedriver.exe",options = options)
+options.page_load_strategy = 'eager'
+
+driver =webdriver.Chrome(service=service,options = options)
 wait = WebDriverWait(driver, timeout=2, poll_frequency=0.1)
 waitQuick = WebDriverWait(driver,timeout = 0.5, poll_frequency=0.1)
 waitLong = WebDriverWait(driver,timeout = 5, poll_frequency=0.5)
@@ -37,37 +35,46 @@ class Seat:
     def show(self):
         print(self.price, self.seatNo, self.zone)
                
+def loadCookie():
+    pathT = "F:/TIX/botTTM/www.thaiticketmajor.com_cookies.json"
+    with open(pathT,"r") as file:
+        cookies = json.load(file)
 
-def killYourSelf():
-    driver.quit()
+    print("loading cookie")
+    for cookie in cookies:
+        if "sameSite" in cookie:
+            cookie["sameSite"] = "Lax"
+            driver.add_cookie(cookie)
+    driver.refresh()
+    print("cookie loaded successfully")
+
+
+def addDelay():
+    import random
+    toSleep = (random.uniform(0.4,0.8))
+    logging.info(f"@process {processID} DELAY = {toSleep}")
+    time.sleep(toSleep)
 
 def loadAndLogin(URL):
-    #wait = WebDriverWait(driver, timeout=2, poll_frequency=0.5, ignored_exceptions=[EX.StaleElementReferenceException, EX.ElementNotSelectableException, EX.ElementClickInterceptedException])
-    success = False
-    #go to website
-    start  = time.time()
-
+    start = time.time()
     driver.get(URL)
-    wait.until(EC.url_matches(URL))
-    #login start
-    while not success:
-        wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR,"body > div.main > header > div.container > div > div.mh-col.col-12.col-xl > div > button"))).click()
-        logging.info(f"@process {processID} login has started -xx")
+    loadCookie()
+    """
+    logging.info(f"@process {processID} attempting login...")
+    time.sleep(3)
+    wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, "body > div.main > header > div.container > div > div.mh-col.col-12.col-xl > div > button"))).click()
+    logging.info(f"@process {processID} login has started -xx ")
+    addDelay()
+    waitLong.until(EC.visibility_of_element_located((By.CSS_SELECTOR, "#frm-signin > div.row-form.box-input > div > div:nth-child(1) > input"))).send_keys("peeannop28@outlook.com")
+    addDelay()
+    waitLong.until(EC.visibility_of_element_located((By.CSS_SELECTOR, "#frm-signin > div.row-form.box-input > div > div.box-input-item.box-view-password > div > input"))).send_keys("nop2000thai")
+    addDelay()
+    waitLong.until(EC.visibility_of_element_located((By.CSS_SELECTOR, "#frm-signin > div:nth-child(3) > div > button"))).click() """
 
-        waitLong.until(EC.visibility_of_element_located((By.CSS_SELECTOR,"#frm-signin > div.row-form.box-input > div > div:nth-child(1) > input"))).send_keys("peeannop28@outlook.com")
-        waitLong.until(EC.visibility_of_element_located((By.CSS_SELECTOR,"#frm-signin > div.row-form.box-input > div > div.box-input-item.box-view-password > div > input"))).send_keys("nop2000thai")
-        waitLong.until(EC.visibility_of_element_located((By.CSS_SELECTOR,"#frm-signin > div:nth-child(3) > div > button"))).click()
-        #login end
-        try:
-            wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR,"body > div.main > header > div.container > div > div.mh-col.col-12.col-xl > div > div.box-member.box-dropdown.item.d-none.d-lg-inline-block > button")))
-        except (EX.TimeoutException):
-            success = False
-        finally:
-            success = True
-    print("success state: ", success)
-    end = time.time()
-    logging.info(f"@process {processID}, elapsed time --load+login {end-start}")
-    print(f"@process {processID} SUCCESS: --load+login() elapsed time: {end-start}")
+    end = time.time() 
+    logging.info(f"@process {processID}, elapsed time --load+login {end - start}")
+    logging.info(f"@process {processID} SUCCESS: --load+login() elapsed time: {end - start}")
+
 
 #DESC: monitor for file change by comparing hash of files
 #ARGS: accept path to file
@@ -122,7 +129,7 @@ def click_btn_red_DIRECT():
         try:
             # Find and click on the element
             element = wait.until(EC.element_to_be_clickable((By.CLASS_NAME,attrix)))
-            #time.sleep(0.05*increment)
+            addDelay()
             element.click()
             newURL = driver.current_url
             if newURL != currentURL:
@@ -158,7 +165,7 @@ def click_btn_red_INDIRECT():
         try:
             # Find and click on the element
             element = wait.until(EC.element_to_be_clickable((By.CLASS_NAME,attrix)))
-            #time.sleep(0.05*increment)
+            addDelay()
             element.click()
             increment+=1
             break
@@ -189,7 +196,7 @@ def moreDay(day):
         try:
             # Find and click on the element
             element = wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR,attrix)))
-            #time.sleep(0.05*increment)
+            addDelay()
             element.click()
             newURL = driver.current_url
             if newURL != currentURL:
@@ -222,7 +229,9 @@ def acceptTerms():
         try:
             # Find and click on the element
             accept = wait.until(EC.element_to_be_clickable((By.CLASS_NAME,"label-txt")))
+            addDelay()
             accept.click()
+            addDelay()
             driver.find_element(By.ID,"btn_verify").click()            
             #time.sleep(0.05*increment)
             newURL = driver.current_url
@@ -259,9 +268,8 @@ def clickDropdown(day):
 #DESC
 #ARGS
 #RETURN
-def findZone(zone):
+def findZone(zone,day):
     start = time.time()
-
     current_retry = 0
     currentURL = driver.current_url
     increment = 1
@@ -273,13 +281,20 @@ def findZone(zone):
             element = wait.until(EC.visibility_of_element_located((By.XPATH,  f"//*[contains(@href, '#fixed.php#{zone}')]")))
             #time.sleep(0.05*increment)
             element.click()
+            addDelay()
             newURL = driver.current_url
-            if newURL != currentURL:
+            print("current URL:, ", currentURL)
+            print("new URL:, ", newURL)
+
+            if f"{zone}&round=" in newURL:
                 break
             else:
                 print("trying----PLS WAIT", increment)
                 increment+=1
-        except (EX.StaleElementReferenceException, EX.ElementClickInterceptedException, EX.TimeoutException, EX.ElementNotInteractableException) as e:
+        except (EX.ElementClickInterceptedException):
+            driver.refresh()
+            clickDropdown(day)
+        except (EX.StaleElementReferenceException, EX.TimeoutException, EX.ElementNotInteractableException) as e:
             # Handle the ElementClickInterceptedException
             current_retry += 1
             logging.info(f"@process {processID}, findZone() Attempt #{current_retry}: {e}")
@@ -403,8 +418,8 @@ def complete(queue):
                 logging.info(f"@process {processID}, Killing this process immediately...")
                 print(f"@process {processID} TERMINATED NOW")
 
-                driver.quit()
-                exit(0)
+                #driver.quit()
+                #exit(0)
         return(1)
 #DESC click seat up to specified limit. it handles all interrceptions and alert that might happen during the process.
 #If the cilck is intercepted either by alert or popup due to the seats already booked by others, it will keep track of the problematic seats
@@ -427,7 +442,7 @@ def clickSeat(limit,seats,queue):
             p = seats[i].get_attribute("data-seat")
             tempAll.append(p)
             logging.info(f"@process {processID}, -->{p}")
-            time.sleep(0.05)
+            addDelay()
             if i+1 == len(seats):
                 try:
                     waitQuick.until(EC.element_to_be_clickable((By.CSS_SELECTOR,"body > div.fancybox-overlay.fancybox-overlay-fixed > div > div > a"))).click()
@@ -470,6 +485,7 @@ def clickSeat(limit,seats,queue):
 def fillTicName(nameList):
     for i in range(len(nameList)):
         driver.find_element(By.XPATH,f'//*[@id="txt_firstname_{i}"]').send_keys(nameList[i])
+        addDelay()
     driver.find_element(By.CSS_SELECTOR,"#btn_regnow").click()
 
 
@@ -481,7 +497,7 @@ def fillTicName(nameList):
 def afterBook(nameList):
     def getOTP():
         from subprocess import Popen
-        file_path = "F:/Work Folder/ticSeleBot/otp.txt"
+        file_path = "F:/TIX/botTTM/otp.txt"
         with open(file_path, 'w') as file:
                 file.write("")
         Popen(["notepad.exe", file_path])
@@ -500,14 +516,20 @@ def afterBook(nameList):
         fillTicName(nameList)
         logging.info(f"@process {processID}, fill name completed")
     waitLong.until(EC.element_to_be_clickable((By.CSS_SELECTOR,"#checkagree > strong"))).click()
+    addDelay()
     waitLong.until(EC.element_to_be_clickable((By.CSS_SELECTOR,"#tab-payment > div:nth-child(6) > label > strong"))).click()
+    addDelay()
     waitLong.until(EC.element_to_be_clickable((By.CSS_SELECTOR,"#btn_pickup"))).click()
+    addDelay()
     waitLong.until(EC.element_to_be_clickable((By.CSS_SELECTOR,"#btn_mobile"))).click()
+    addDelay()
     waitLong.until(EC.element_to_be_clickable((By.CSS_SELECTOR,"#btn_truemoney"))).click()
     waitLong.until(EC.element_to_be_clickable((By.CSS_SELECTOR,"#truemoney_contact"))).send_keys("0842564963")
     logging.info(f"@process {processID}, LAST STEP! Wait for OTP")
     waitLong.until(EC.element_to_be_clickable((By.CSS_SELECTOR,"#btn_confirm"))).click()
+    addDelay()
     waitLong.until(EC.element_to_be_clickable((By.CSS_SELECTOR,"#otp"))).send_keys(getOTP())
+    addDelay()
     waitLong.until(EC.element_to_be_clickable((By.CSS_SELECTOR,"#payment-process > input"))).click()
     return True
   

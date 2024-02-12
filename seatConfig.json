@@ -1,14 +1,14 @@
 {
     "queue": false,
-    "oneDay": true,
-    "day": 1,
-    "zone_list": ["C9","C8",["C16","C16"],"C1","C5","C4"],
+    "oneDay": false,
+    "day": 2,
+    "zone_list": ["E1C","E2C"],
     "startTime": {"YEAR": 2023, "MONTH": 11, "DAY": 3, "HOUR": 12, "MINUTE": 0},
     "queueTime": {"YEAR": 2023, "MONTH": 11, "DAY": 3, "HOUR": 9, "MINUTE":0},
-    "ticketPrice": 7500,
+    "ticketPrice": 7000,
     "fee": 0,
     "limit": 4,
     "mode": "any",
-    "name_list": ["john1","john2","john3","john4"],
-    "url": "https://www.thaiticketmajor.com/concert/MATHEMATICS-TOUR-TO-ASIA-AND-EUROPE-IN-2024.html"
+    "name_list": ["Kim Min Jae","Joshn shua wong","Dondhan Kammin","Jornjad pongsook"],
+    "url": "https://www.thaiticketmajor.com/concert/bruno-mars-live-in-bangkok.html"
 }

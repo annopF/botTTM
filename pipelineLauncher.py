@@ -8,7 +8,7 @@ from os import getpid
 def startS_Booker(queue, zone, segIdx,segment):
     configure_logging()
     success = False
-    json_file_path = "F:/Work Folder/ticSeleBot/seatConfig.json"
+    json_file_path = "seatConfig.json"
     config = configData.bookingDetail(json_file_path)
     config.initialize()
     config.showConfig()
@@ -47,7 +47,6 @@ def startS_Booker(queue, zone, segIdx,segment):
             book.click_btn_red_DIRECT()
         else:
             book.moreDay(config.day) #if concert has multiple rounds, click call moreDay() to handle it properly
-
         book.acceptTerms() #click accept terms and conditions by calling acceptTerms()
 
     if config.queue:
@@ -60,8 +59,10 @@ def startS_Booker(queue, zone, segIdx,segment):
     fuckedUpSeat = []
     success = False #success flag change to TRUE if the seats are clicked successfully, default=False
     Mstart = time.time()
-    book.findZone(zone)
+    book.findZone(zone,config.day)
     while not success: #this while loop keep looping over a zone in case the click fucntion got intercepted by "this seat has been taken" popup
+        print("sleeping")
+        time.sleep(2)
         seats= book.findAllSeatUnchecked(config.price, fuckedUpSeat)  
         pid = getpid()
         logging.info(f"@process {pid} ----> current zone {zone}, {config.price}")
